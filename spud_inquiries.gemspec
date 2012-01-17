@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "app/helpers/spud/user_sessions_helper.rb",
     "app/models/spud_inquiry.rb",
     "app/models/spud_inquiry_field.rb",
+    "app/views/spud/admin/inquiries/index.html.erb",
     "config/application.rb",
     "config/boot.rb",
     "config/routes.rb",
