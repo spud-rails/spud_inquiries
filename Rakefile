@@ -3,6 +3,8 @@ begin
     Jeweler::Tasks.new do |gem|
         gem.name = "spud_inquiries"
         gem.summary = "Spud Inquiry/Contact Form Engine"
+	gem.authors = "David Estes"
+	gem.email = "destes@redwindsw.com"
         gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
         gem.add_dependency 'spud_admin'
         # other fields that would normally go in your gemspec

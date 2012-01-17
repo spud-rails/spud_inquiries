@@ -8,7 +8,9 @@ Gem::Specification.new do |s|
   s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.authors = ["David Estes"]
   s.date = "2012-01-17"
+  s.email = "destes@redwindsw.com"
   s.files = [
     "app/assets/images/spud/admin/contacts_thumb.png",
     "app/assets/javascripts/spud/admin/inquiries.js",
