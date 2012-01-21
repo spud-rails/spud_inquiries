@@ -9,25 +9,35 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Estes"]
-  s.date = "2012-01-17"
+  s.date = "2012-01-21"
   s.email = "destes@redwindsw.com"
   s.files = [
     "app/assets/images/spud/admin/contacts_thumb.png",
-    "app/assets/javascripts/spud/admin/inquiries.js",
-    "app/assets/javascripts/spud/admin/users.js",
+    "app/assets/javascripts/spud/admin/inquiries/application.js",
     "app/assets/javascripts/spud/user_sessions.js",
     "app/assets/stylesheets/spud/admin/inquiries.css",
+    "app/assets/stylesheets/spud/admin/inquiry_forms.css",
     "app/controllers/spud/admin/inquiries_controller.rb",
+    "app/controllers/spud/admin/inquiry_forms_controller.rb",
     "app/helpers/spud/admin/inquiries_helper.rb",
+    "app/helpers/spud/admin/inquiry_forms_helper.rb",
     "app/helpers/spud/admin/users_helper.rb",
     "app/helpers/spud/user_sessions_helper.rb",
     "app/models/spud_inquiry.rb",
     "app/models/spud_inquiry_field.rb",
+    "app/models/spud_inquiry_form.rb",
+    "app/models/spud_inquiry_form_field.rb",
     "app/views/spud/admin/inquiries/index.html.erb",
+    "app/views/spud/admin/inquiry_forms/_form.html.erb",
+    "app/views/spud/admin/inquiry_forms/_spud_inquiry_form_field_fields.html.erb",
+    "app/views/spud/admin/inquiry_forms/edit.html.erb",
+    "app/views/spud/admin/inquiry_forms/index.html.erb",
+    "app/views/spud/admin/inquiry_forms/new.html.erb",
     "config/application.rb",
     "config/boot.rb",
     "config/routes.rb",
     "lib/spud_inquiries.rb",
+    "lib/spud_inquiries/configuration.rb",
     "lib/spud_inquiries/engine.rb"
   ]
   s.require_paths = ["lib"]
