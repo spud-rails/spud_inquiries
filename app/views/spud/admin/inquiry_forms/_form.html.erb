@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>Form Name</legend>
+  <ol>
+	  <li>
+	      <%=error_message_on "page","name"%>
+	    	<%=f.label :name, :required=>true%>
+	      <%=f.text_field :name%>
+      </li>
+      <li>
+	      <%=error_message_on "page","content"%>
+	    	<%=f.label :content, :required=>true%>
+	      <%=f.text_area :content,:cols => 75,:rows => 5%>
+      </li>
+  </ol>
+</fieldset>
+
+<%=f.fields_for :spud_inquiry_form_fields do |builder|%>
+	<%=render "spud_inquiry_form_field_fields",:f => builder%>
+<%end%>
+<p><%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %></p>

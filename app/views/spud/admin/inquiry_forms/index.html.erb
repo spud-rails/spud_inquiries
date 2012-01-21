@@ -1,0 +1,21 @@
+<%=content_for :data_controls do%>
+<%=link_to "New Form",new_spud_admin_inquiry_form_path(),:class => "button",:title => "New Form"%>
+<%end%>
+<%=content_for :detail do%>
+	<div class="page_list">
+			<%@inquiry_forms.each do |inquiry_form|%>
+				<div class="page_row">
+					
+				<span class="row_meta"><%=link_to inquiry_form.name,edit_spud_admin_inquiry_form_path(inquiry_form)%></span>
+
+				<span class="edit_controls">
+				<%=link_to "Edit",edit_spud_admin_inquiry_form_path(inquiry_form),:class => 'button'%>
+				<%=link_to "Remove",spud_admin_inquiry_form_path(inquiry_form),:method => :delete,:class => 'button',:confirm => "Are you sure you want to remove this file?"%></span>
+				<br style="clear:both;"/>
+			</div>
+			<%end%>
+			<%=will_paginate @inquiry_forms%>
+
+	</div>
+
+<%end%>

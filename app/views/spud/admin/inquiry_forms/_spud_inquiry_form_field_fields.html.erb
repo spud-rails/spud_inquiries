@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>Field</legend>
+	<ol>
+		<li>
+			<%=f.label :name%>
+			<%=f.text_field :name%>
+		</li>
+		<li>
+			<%=f.label :field_type%>
+	  		<%=f.select :field_type, [["Text Field",0],["Checkbox",1],["Text Area",2],["Dropdown",3]]%>
+
+			
+		</li>
+		<li>
+			<%=f.label :options%>
+			<%=f.text_field :options%>
+		</li>
+		<li>
+			<%=f.label :default_value%>
+			<%=f.text_field :default_value%>
+		</li>
+		<li>
+			<%= link_to_remove_fields "Remove", f %>
+		</li>
+	</ol>
+</fieldset>
