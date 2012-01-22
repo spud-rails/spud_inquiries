@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
     "app/models/spud_inquiry_form_field.rb",
     "app/views/contacts/show.html.erb",
     "app/views/spud/admin/inquiries/index.html.erb",
+    "app/views/spud/admin/inquiries/show.html.erb",
     "app/views/spud/admin/inquiry_forms/_form.html.erb",
     "app/views/spud/admin/inquiry_forms/_spud_inquiry_form_field_fields.html.erb",
     "app/views/spud/admin/inquiry_forms/edit.html.erb",
