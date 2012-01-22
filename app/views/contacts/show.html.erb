@@ -1,0 +1,34 @@
+<h2><%=@inquiry_form.name%></h2>
+<%=@inquiry_form.content.html_safe if !@inquiry_form.content.blank?%>
+
+<%=form_for :spud_inquiry, :url => "/contact/inquire" do |f|%>
+<fieldset>
+<ol>
+	<li>
+		<%=f.label :email%>
+		<%=f.text_field :email%>
+	</li>
+	<%@inquiry_form.spud_inquiry_form_fields.each do |field|%>
+		<li>
+			<%=f.label field.name%>
+			
+			<%=case field.field_type
+				when '0'
+					f.text_field field.name,:value => field.default_value
+				when '1'
+					f.check_box field.name
+				when '2'
+					f.text_area field.name
+				when '3'
+					f.select field.name,field.options.split(",").collect {|opt| [opt,opt]},:include_blank => true
+			end%>
+		</li>
+	<%end%>
+	<li style="text-align:center;">
+	<%=f.submit "Submit Inquiry"%>
+	</li>	
+</ol>
+
+</fieldset>
+	
+<%end%>

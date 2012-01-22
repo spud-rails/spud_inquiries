@@ -5,6 +5,10 @@ Rails.application.routes.draw do
    		resources :inquiry_forms
    	end
    end
+   match "/contact" => "contacts#show"
+   post "contact/inquire" => "contacts#inquire"
+   match "/contact/:id" => "contacts#show"
+
    
 end
 

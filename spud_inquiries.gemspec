@@ -9,16 +9,21 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Estes"]
-  s.date = "2012-01-21"
+  s.date = "2012-01-22"
   s.email = "destes@redwindsw.com"
   s.files = [
     "app/assets/images/spud/admin/contacts_thumb.png",
+    "app/assets/javascripts/application.js",
+    "app/assets/javascripts/contacts.js",
     "app/assets/javascripts/spud/admin/inquiries/application.js",
     "app/assets/javascripts/spud/user_sessions.js",
+    "app/assets/stylesheets/contacts.css",
     "app/assets/stylesheets/spud/admin/inquiries.css",
     "app/assets/stylesheets/spud/admin/inquiry_forms.css",
+    "app/controllers/contacts_controller.rb",
     "app/controllers/spud/admin/inquiries_controller.rb",
     "app/controllers/spud/admin/inquiry_forms_controller.rb",
+    "app/helpers/contacts_helper.rb",
     "app/helpers/spud/admin/inquiries_helper.rb",
     "app/helpers/spud/admin/inquiry_forms_helper.rb",
     "app/helpers/spud/admin/users_helper.rb",
@@ -27,6 +32,7 @@ Gem::Specification.new do |s|
     "app/models/spud_inquiry_field.rb",
     "app/models/spud_inquiry_form.rb",
     "app/models/spud_inquiry_form_field.rb",
+    "app/views/contacts/show.html.erb",
     "app/views/spud/admin/inquiries/index.html.erb",
     "app/views/spud/admin/inquiry_forms/_form.html.erb",
     "app/views/spud/admin/inquiry_forms/_spud_inquiry_form_field_fields.html.erb",

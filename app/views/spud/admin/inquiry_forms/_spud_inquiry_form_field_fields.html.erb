@@ -20,6 +20,14 @@
 			<%=f.text_field :default_value%>
 		</li>
 		<li>
+			<%=f.label :field_order%>
+			<%=f.text_field :field_order%>
+		</li>
+		<li>
+			<%=f.label :required%>
+			<%=f.check_box :required%>
+		</li>
+		<li>
 			<%= link_to_remove_fields "Remove", f %>
 		</li>
 	</ol>
