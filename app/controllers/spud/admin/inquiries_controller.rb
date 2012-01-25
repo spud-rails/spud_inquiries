@@ -1,17 +1,16 @@
 class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 	layout 'spud/admin/detail'
+	belongs_to_spud_app :inquiries
 	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
 	before_filter :load_inquiries,:only => [:edit,:update,:show,:destroy]	
 	def index
-		@page_thumbnail = "spud/admin/contacts_thumb.png"
-		@page_name = "Inquiries"
 		@inquiries = SpudInquiry.order("created_at DESC").paginate :page => params[:page]
+		respond_with @inquiries
 	end
 
 	def show
-		@page_thumbnail = "spud/admin/contacts_thumb.png"
-		@page_name = "Inquiry"
 		add_breadcrumb "#{@inquiry.email}", :spud_admin_inquiry_path
+		respond_with @inquiry
 	end
 
 	def destroy
@@ -19,7 +18,7 @@ class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 		if @inquiry.destroy
 			status = 200
 		end
-		respond_to do |format|
+		respond_with @inquiry do |format|
 			format.js { render :status => status,:text => nil}
 			format.html {
 				flash[:error] = "Error removing inquiry!" if status == 500
