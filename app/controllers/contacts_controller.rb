@@ -14,20 +14,33 @@ class ContactsController < ApplicationController
 			flash[:error] = "Inquiry Not Found!"
 			redirect_to request.referer and return
 		end
-
-		@inquiry = SpudInquiry.new(:email => params[:spud_inquiry][:email])
+		@inquiry_form = SpudInquiryForm.find(params[:spud_inquiry][:spud_inquiry_form_id])
+		if @inquiry_form.blank?
+			flash[:error] = "Form Not Found!"
+			redirect_to request.referer and return 
+		end
+		@inquiry = SpudInquiry.new(:email => params[:spud_inquiry][:email],:spud_inquiry_form_id => params[:spud_inquiry][:spud_inquiry_form_id])
+		
+		@inquiry.recipients = @inquiry_form.recipients
+		@inquiry.subject = @inquiry_form.subject
+		
 		params[:spud_inquiry].each_pair do |key,value|
-			if key != :email
+			if key.to_s != "email" && key.to_s != "spud_inquiry_form_id"
 				@inquiry.spud_inquiry_fields.new(:name => key,:value => value)
-
 			end
 		end
 		if @inquiry.save
 			flash[:notice] = "Your inquiry was received!"
+			if !@inquiry.recipients.blank?
+				Spud::InquiryMailer.inquiry_notification(@inquiry).deliver
+			end
 		else
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
 		end
-		redirect_to request.referer and return
-
+		redirect_to contact_thankyou_url
 	end
+
+	def thankyou
+		render :layout => Spud::Inquiries.base_layout
+	end	
 end

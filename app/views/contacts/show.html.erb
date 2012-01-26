@@ -3,6 +3,7 @@
 
 <%=form_for :spud_inquiry, :url => "/contact/inquire" do |f|%>
 <fieldset>
+<%=f.hidden_field :spud_inquiry_form_id,:value => @inquiry_form.id%>
 <ol>
 	<li>
 		<%=f.label :email%>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
    end
    match "/contact" => "contacts#show"
    post "contact/inquire" => "contacts#inquire"
+   match "contact/thankyou" => "contacts#thankyou"
    match "/contact/:id" => "contacts#show"
 
    

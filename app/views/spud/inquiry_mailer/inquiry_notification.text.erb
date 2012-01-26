@@ -1,0 +1,8 @@
+
+Inquiry Received
+=================
+
+From: <%=@inquiry.email%>
+<%@inquiry.spud_inquiry_fields.each do |field|%>
+<%=field.name%>: <%=field.value%>
+<%end%>

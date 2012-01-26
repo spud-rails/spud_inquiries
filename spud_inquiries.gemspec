@@ -9,17 +9,12 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Estes"]
-  s.date = "2012-01-22"
+  s.date = "2012-01-26"
   s.email = "destes@redwindsw.com"
   s.files = [
     "app/assets/images/spud/admin/contacts_thumb.png",
-    "app/assets/javascripts/application.js",
-    "app/assets/javascripts/contacts.js",
-    "app/assets/javascripts/spud/admin/inquiries/application.js",
-    "app/assets/javascripts/spud/user_sessions.js",
-    "app/assets/stylesheets/contacts.css",
+    "app/assets/javascripts/spud/admin/inquiries.js",
     "app/assets/stylesheets/spud/admin/inquiries.css",
-    "app/assets/stylesheets/spud/admin/inquiry_forms.css",
     "app/controllers/contacts_controller.rb",
     "app/controllers/spud/admin/inquiries_controller.rb",
     "app/controllers/spud/admin/inquiry_forms_controller.rb",
@@ -28,11 +23,14 @@ Gem::Specification.new do |s|
     "app/helpers/spud/admin/inquiry_forms_helper.rb",
     "app/helpers/spud/admin/users_helper.rb",
     "app/helpers/spud/user_sessions_helper.rb",
+    "app/mailers/spud/inquiry_mailer.rb",
     "app/models/spud_inquiry.rb",
     "app/models/spud_inquiry_field.rb",
     "app/models/spud_inquiry_form.rb",
     "app/models/spud_inquiry_form_field.rb",
     "app/views/contacts/show.html.erb",
+    "app/views/contacts/thankyou.html.erb",
+    "app/views/layouts/spud/inquiries/detail.html.erb",
     "app/views/spud/admin/inquiries/index.html.erb",
     "app/views/spud/admin/inquiries/show.html.erb",
     "app/views/spud/admin/inquiry_forms/_form.html.erb",
@@ -40,6 +38,8 @@ Gem::Specification.new do |s|
     "app/views/spud/admin/inquiry_forms/edit.html.erb",
     "app/views/spud/admin/inquiry_forms/index.html.erb",
     "app/views/spud/admin/inquiry_forms/new.html.erb",
+    "app/views/spud/inquiry_mailer/inquiry_notification.html.erb",
+    "app/views/spud/inquiry_mailer/inquiry_notification.text.erb",
     "config/application.rb",
     "config/boot.rb",
     "config/routes.rb",
@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
     "lib/spud_inquiries/engine.rb"
   ]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.15"
   s.summary = "Spud Inquiry/Contact Form Engine"
 
   if s.respond_to? :specification_version then
