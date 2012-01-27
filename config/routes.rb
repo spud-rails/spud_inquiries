@@ -4,6 +4,9 @@ Rails.application.routes.draw do
    		resources :inquiries
    		resources :inquiry_forms
    	end
+      namespace :inquiries do
+         resource :sitemap,:only => [:show]
+      end
    end
    match "/contact" => "contacts#show"
    post "contact/inquire" => "contacts#inquire"
