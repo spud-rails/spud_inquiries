@@ -6,7 +6,7 @@ begin
 	gem.authors = "David Estes"
 	gem.email = "destes@redwindsw.com"
         gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
-        gem.add_dependency 'spud_core', '>=0.3.0'
+        gem.add_dependency 'spud_core', '>=0.5.3'
         # other fields that would normally go in your gemspec
         # like authors, email and has_rdoc can also be included here
 	end

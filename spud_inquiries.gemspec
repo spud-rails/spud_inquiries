@@ -5,12 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = "spud_inquiries"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Estes"]
-  s.date = "2012-01-30"
+  s.date = "2012-02-19"
   s.email = "destes@redwindsw.com"
+  s.extra_rdoc_files = [
+    "README.markdown"
+  ]
   s.files = [
     "app/assets/images/spud/admin/contacts_thumb.png",
     "app/assets/javascripts/spud/admin/inquiries.js",
@@ -21,12 +24,6 @@ Gem::Specification.new do |s|
     "app/controllers/spud/admin/inquiries_controller.rb",
     "app/controllers/spud/admin/inquiry_forms_controller.rb",
     "app/controllers/spud/inquiries/sitemaps_controller.rb",
-    "app/helpers/contacts_helper.rb",
-    "app/helpers/spud/admin/inquiries_helper.rb",
-    "app/helpers/spud/admin/inquiry_forms_helper.rb",
-    "app/helpers/spud/admin/users_helper.rb",
-    "app/helpers/spud/inquiries/sitemaps_helper.rb",
-    "app/helpers/spud/user_sessions_helper.rb",
     "app/mailers/spud/inquiry_mailer.rb",
     "app/models/spud_inquiry.rb",
     "app/models/spud_inquiry_field.rb",
@@ -60,12 +57,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<spud_core>, [">= 0.3.0"])
+      s.add_runtime_dependency(%q<spud_core>, [">= 0.5.3"])
     else
-      s.add_dependency(%q<spud_core>, [">= 0.3.0"])
+      s.add_dependency(%q<spud_core>, [">= 0.5.3"])
     end
   else
-    s.add_dependency(%q<spud_core>, [">= 0.3.0"])
+    s.add_dependency(%q<spud_core>, [">= 0.5.3"])
   end
 end
 
