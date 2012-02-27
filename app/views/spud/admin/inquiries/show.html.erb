@@ -1,4 +1,5 @@
 <%=content_for :detail do%>
+<h3>Form: <%=@inquiry.spud_inquiry_form.name%>
 <p><strong>From:</strong> <%=link_to @inquiry.email,"mailto:#{@inquiry.email}"%></p>
 	<%@inquiry.spud_inquiry_fields.each do |field|%>
 		<p><strong><%=field.name%></strong>

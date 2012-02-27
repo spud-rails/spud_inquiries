@@ -4,7 +4,7 @@ class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
 	before_filter :load_inquiries,:only => [:edit,:update,:show,:destroy]	
 	def index
-		@inquiries = SpudInquiry.order("created_at DESC").paginate :page => params[:page]
+		@inquiries = SpudInquiry.order("created_at DESC").includes(:spud_inquiry_form).paginate :page => params[:page]
 		respond_with @inquiries
 	end
 
