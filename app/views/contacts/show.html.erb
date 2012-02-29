@@ -2,12 +2,13 @@
 <%=@inquiry_form.content.html_safe if !@inquiry_form.content.blank?%>
 
 <%=form_for :spud_inquiry, :url => "/contact/inquire" do |f|%>
+<%=error_messages_for(@inquiry)%>
 <fieldset>
 <%=f.hidden_field :spud_inquiry_form_id,:value => @inquiry_form.id%>
 <ol>
 	<li>
 		<%=f.label :email%>
-		<%=f.text_field :email%>
+		<%=f.text_field :email,:value => @inquiry.email%>
 	</li>
 	<%@inquiry_form.spud_inquiry_form_fields.each do |field|%>
 		<li>
@@ -15,16 +16,20 @@
 			
 			<%=case field.field_type
 				when '0'
-					f.text_field field.name,:value => field.default_value
+					f.text_field field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
 				when '1'
-					f.check_box field.name
+					f.check_box field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
 				when '2'
-					f.text_area field.name
+					f.text_area field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
 				when '3'
 					f.select field.name,field.options.split(",").collect {|opt| [opt,opt]},:include_blank => true
 			end%>
 		</li>
 	<%end%>
+	<li class="spud_inquiry_hide">
+		<label id='other_email_label' for='other_email'>Please leave blank:</label>
+		<input type='text' name='other_email' id='other_email'>
+	</li>
 	<li style="text-align:center;">
 	<%=f.submit "Submit Inquiry"%>
 	</li>	

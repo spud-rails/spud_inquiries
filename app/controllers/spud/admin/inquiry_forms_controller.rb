@@ -32,11 +32,17 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 	def update
 		@page_name = "Edit Inquiry Form"
 		flash[:notice] = "Form saved successfully!" if @inquiry_form.update_attributes(params[:spud_inquiry_form])
+		if Spud::Inquiries.enable_action_caching
+			Rails.cache.clear
+		end
 		respond_with @inquiry_form, :location => spud_admin_inquiry_forms_url
 	end
 
 	def destroy
 		flash[:notice] = "Inquiry form removed!" if @inquiry_form.destroy
+		if Spud::Inquiries.enable_action_caching
+			Rails.cache.clear
+		end
 		respond_with @inquiry_form,:location => spud_admin_inquiry_forms_url
 	end
 private
