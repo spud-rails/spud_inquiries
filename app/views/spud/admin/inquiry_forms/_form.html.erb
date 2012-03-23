@@ -29,11 +29,12 @@
       </div>
   
 </fieldset>
-<fieldset class="fields">
+<fieldset>
   <legend>Fields</legend>
+
 	<%=f.fields_for :spud_inquiry_form_fields do |builder|%>
 		<%=render "spud_inquiry_form_field_fields",:f => builder%>
 	<%end%>
 	<p><%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %></p>
-</fieldset
+</fieldset>
 
