@@ -1,28 +1,39 @@
 <%=error_messages_for(f.object)%>
 <fieldset>
   <legend>Form Info</legend>
-  <ol>
-	  <li>
+  
+	  <div class="control-group">
 	      
-	    	<%=f.label :name, :required=>true%>
-	      <%=f.text_field :name%>
-      </li>
-      <li>
-	    	<%=f.label :recipients, :required=>true%>
-	      <%=f.text_field :recipients%>
-      </li>
-      <li>
-	    	<%=f.label :subject, :required=>true%>
-	      <%=f.text_field :subject%>
-      </li>
-      <li>
-	    	<%=f.label :content, :required=>true%>
-	      <%=f.text_area :content,:cols => 75,:rows => 5,:class => "wysiwym"%>
-      </li>
-  </ol>
+	    	<%=f.label :name, :required=>true, :class=>"control-label"%>
+		<div class="controls">
+			<%=f.text_field :name%>
+		</div>
+      </div>
+      <div class="control-group">
+	    	<%=f.label :recipients, :required=>true, :class=>"control-label"%>
+			<div class="controls">
+				<%=f.text_field :recipients%>
+			</div>
+      </div>
+      <div class="control-group">
+	    	<%=f.label :subject, :required=>true, :class=>"control-label"%>
+		<div class="controls">
+			<%=f.text_field :subject%>
+		</div>
+      </div>
+      <div class="control-group">
+	    	<%=f.label :content, :required=>true, :class=>"control-label"%>
+			<div class="controls">
+				<%=f.text_area :content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
+			</div>
+      </div>
+  
 </fieldset>
+<fieldset class="fields">
+  <legend>Fields</legend>
+	<%=f.fields_for :spud_inquiry_form_fields do |builder|%>
+		<%=render "spud_inquiry_form_field_fields",:f => builder%>
+	<%end%>
+	<p><%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %></p>
+</fieldset
 
-<%=f.fields_for :spud_inquiry_form_fields do |builder|%>
-	<%=render "spud_inquiry_form_field_fields",:f => builder%>
-<%end%>
-<p><%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %></p>
