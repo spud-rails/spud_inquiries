@@ -24,10 +24,10 @@ Routing to the Inquiries Engine
 By default the inquiries gem routes the "/contact" url to the form named "contact". However this and other configuration options can be changed as shown below.
 
 
-		Spud::Cms.configure do |config|
+		Spud::Inquiries.configure do |config|
 		    config.default_contact_form = "contact"
-			config.base_layout = "application"
-			config.from_address = "no-reply@example.org"
+		    config.base_layout = "application"
+		    config.from_address = "no-reply@example.org"
 		end
 
 
