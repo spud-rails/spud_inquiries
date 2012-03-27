@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Inquiry form builder and mailer for spud (Useful for Contact Forms)."
   s.description = "This gem allows you to build forms for user submission and can send email notifications when a form is filled out."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.2"
