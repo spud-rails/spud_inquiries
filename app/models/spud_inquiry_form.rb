@@ -7,6 +7,7 @@ class SpudInquiryForm < ActiveRecord::Base
 	validates :name,:presence => true,:uniqueness => true
 	validates :url_name,:presence => true, :uniqueness => true
 	before_validation :generate_url_name
+	attr_accessible :name,:url_name,:recipients,:content,:subject,:spud_inquiry_form_fields_attributes
 
      def generate_url_name
           self.url_name = self.name.gsub(/[^a-zA-Z0-9\ ]/," ").gsub(/\ \ +/," ").gsub(/\ /,"-").downcase
