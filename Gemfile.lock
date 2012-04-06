@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    spud_inquiries (0.8.1)
+    spud_inquiries (0.8.2)
       rails (~> 3.2.2)
       spud_core (>= 0.8.0, < 0.9.0)
 
@@ -118,7 +118,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    spud_core (0.8.2)
+    spud_core (0.8.5)
       authlogic
       bootstrap-will_paginate
       breadcrumbs_on_rails
