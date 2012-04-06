@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 	caches_action :show,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
 	caches_action :thankyou,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
+	layout Spud::Inquiries.base_layout
 	def show
 		url_name = !params[:id].blank? ? params[:id] : Spud::Inquiries.default_contact_form
 		@inquiry_form = SpudInquiryForm.where(:url_name => url_name).includes(:spud_inquiry_form_fields).first
@@ -11,7 +12,7 @@ class ContactsController < ApplicationController
 			redirect_to root_url and return
 		end
 		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
-		render :layout => Spud::Inquiries.base_layout
+		
 	end
 
 	def inquire
@@ -62,6 +63,6 @@ class ContactsController < ApplicationController
 	end
 
 	def thankyou
-		render :layout => Spud::Inquiries.base_layout
+		render
 	end	
 end
