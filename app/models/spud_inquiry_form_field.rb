@@ -7,7 +7,8 @@ class SpudInquiryFormField < ActiveRecord::Base
 
 	def options_list
 		return [] if self.options.blank?
-		self.options.split(/\,*?(".*?")\,*?/).map{|x| x=~/^".*"$/ ? x : x.split(',')}.flatten
+		self.options.split(/\,*?(".*?")\,*?/).map{|x| x=~/^".*"$/ ? x.gsub(/\"/,"") : x.split(',')}.flatten.select{|p| !p.strip.blank?}
+
 	end
 
 
