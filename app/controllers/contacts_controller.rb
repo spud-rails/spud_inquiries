@@ -58,6 +58,7 @@ class ContactsController < ApplicationController
 			end
 		else
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
+			render :action => "show" and return
 		end
 		redirect_to contact_thankyou_url
 	end
