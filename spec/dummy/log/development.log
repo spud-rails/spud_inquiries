@@ -1,0 +1,88 @@
+  [1m[36m (337.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (275.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateSpudInquiries (20120117133405)
+  [1m[35m (80.2ms)[0m  CREATE TABLE `spud_inquiries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120117133405')[0m
+Migrating to CreateSpudInquiryFields (20120117133412)
+  [1m[35m (185.5ms)[0m  CREATE TABLE `spud_inquiry_fields` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `value` text, `spud_inquiry_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (296.6ms)[0m  [1mCREATE INDEX `index_spud_inquiry_fields_on_spud_inquiry_id` ON `spud_inquiry_fields` (`spud_inquiry_id`)[0m
+  [1m[35m (22.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120117133412')
+Migrating to CreateSpudInquiryForms (20120121194439)
+  [1m[36m (66.2ms)[0m  [1mCREATE TABLE `spud_inquiry_forms` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120121194439')
+Migrating to CreateSpudInquiryFormFields (20120121194447)
+  [1m[36m (174.4ms)[0m  [1mCREATE TABLE `spud_inquiry_form_fields` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `spud_inquiry_form_id` int(11), `field_type` varchar(255), `name` varchar(255), `options` varchar(255), `default_value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120121194447')
+Migrating to AddFieldOrderToSpudInquiryFormFields (20120122173829)
+  [1m[36m (166.0ms)[0m  [1mALTER TABLE `spud_inquiry_form_fields` ADD `field_order` int(11)[0m
+  [1m[35m (166.9ms)[0m  ALTER TABLE `spud_inquiry_form_fields` ADD `required` tinyint(1)
+  [1m[36m (168.7ms)[0m  [1mCREATE INDEX `index_spud_inquiry_form_fields_on_field_order` ON `spud_inquiry_form_fields` (`field_order`)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120122173829')
+Migrating to AddSpudInquiryFormIdToSpudInquiries (20120126132407)
+  [1m[36m (174.5ms)[0m  [1mALTER TABLE `spud_inquiries` ADD `spud_inquiry_form_id` int(11)[0m
+  [1m[35m (176.7ms)[0m  ALTER TABLE `spud_inquiries` ADD `recipients` text
+  [1m[36m (166.3ms)[0m  [1mALTER TABLE `spud_inquiries` ADD `subject` varchar(255)[0m
+  [1m[35m (118.8ms)[0m  ALTER TABLE `spud_inquiries` ADD `marked_as_read` tinyint(1) DEFAULT 0
+  [1m[36m (178.6ms)[0m  [1mCREATE INDEX `index_spud_inquiries_on_marked_as_read` ON `spud_inquiries` (`marked_as_read`)[0m
+  [1m[35m (157.2ms)[0m  CREATE INDEX `index_spud_inquiries_on_spud_inquiry_form_id` ON `spud_inquiries` (`spud_inquiry_form_id`)
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120126132407')[0m
+Migrating to AddRecipientsToSpudInquiryForms (20120126132522)
+  [1m[35m (163.0ms)[0m  ALTER TABLE `spud_inquiry_forms` ADD `recipients` text
+  [1m[36m (166.1ms)[0m  [1mALTER TABLE `spud_inquiry_forms` ADD `subject` varchar(255)[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20120126132522')
+Migrating to AddUrlNameToSpudInquiryForms (20120127023335)
+  [1m[36m (153.6ms)[0m  [1mALTER TABLE `spud_inquiry_forms` ADD `url_name` varchar(255)[0m
+  [1m[35m (157.2ms)[0m  CREATE INDEX `index_spud_inquiry_forms_on_url_name` ON `spud_inquiry_forms` (`url_name`)
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120127023335')[0m
+Migrating to ChangeInquiryFormFieldsColumn (20120413124900)
+  [1m[35m (149.4ms)[0m  ALTER TABLE `spud_inquiry_form_fields` CHANGE `options` `options` text DEFAULT NULL
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120413124900')[0m
+Migrating to CreateSpudAdminPermissions (20120610131537)
+  [1m[35m (182.7ms)[0m  CREATE TABLE `spud_admin_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `name` varchar(255), `access` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120610131537')[0m
+Migrating to CreateSpudUsers (20120610131538)
+  [1m[35m (153.7ms)[0m  CREATE TABLE `spud_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `first_name` varchar(255), `last_name` varchar(255), `super_admin` tinyint(1), `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (171.1ms)[0m  [1mCREATE INDEX `index_spud_users_on_login` ON `spud_users` (`login`)[0m
+  [1m[35m (166.4ms)[0m  CREATE INDEX `index_spud_users_on_email` ON `spud_users` (`email`)
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120610131538')[0m
+Migrating to AddTimeZoneToSpudUser (20120610131539)
+  [1m[35m (162.8ms)[0m  ALTER TABLE `spud_users` ADD `time_zone` varchar(255)
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120610131539')[0m
+Migrating to AddScopeToSpudAdminPermissions (20120610131540)
+  [1m[35m (165.1ms)[0m  ALTER TABLE `spud_admin_permissions` ADD `scope` varchar(255)
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120610131540')[0m
+Migrating to CreateSpudUserSettings (20120610131541)
+  [1m[35m (149.9ms)[0m  CREATE TABLE `spud_user_settings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `spud_user_id` int(11), `key` varchar(255), `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20120610131541')[0m
+  [1m[35m (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+  [1m[36m (0.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.5ms)[0m  DROP DATABASE IF EXISTS `spud_inquiries_test`
+  [1m[36m (0.3ms)[0m  [1mCREATE DATABASE `spud_inquiries_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (70.3ms)[0m  CREATE TABLE `spud_admin_permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `name` varchar(255), `access` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `scope` varchar(255)) ENGINE=InnoDB
+  [1m[36m (162.7ms)[0m  [1mCREATE TABLE `spud_inquiries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `spud_inquiry_form_id` int(11), `recipients` text, `subject` varchar(255), `marked_as_read` tinyint(1) DEFAULT 0) ENGINE=InnoDB[0m
+  [1m[35m (181.8ms)[0m  CREATE INDEX `index_spud_inquiries_on_marked_as_read` ON `spud_inquiries` (`marked_as_read`)
+  [1m[36m (166.4ms)[0m  [1mCREATE INDEX `index_spud_inquiries_on_spud_inquiry_form_id` ON `spud_inquiries` (`spud_inquiry_form_id`)[0m
+  [1m[35m (172.1ms)[0m  CREATE TABLE `spud_inquiry_fields` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `value` text, `spud_inquiry_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (181.0ms)[0m  [1mCREATE INDEX `index_spud_inquiry_fields_on_spud_inquiry_id` ON `spud_inquiry_fields` (`spud_inquiry_id`)[0m
+  [1m[35m (161.7ms)[0m  CREATE TABLE `spud_inquiry_form_fields` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `spud_inquiry_form_id` int(11), `field_type` varchar(255), `name` varchar(255), `options` text, `default_value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `field_order` int(11), `required` tinyint(1)) ENGINE=InnoDB
+  [1m[36m (169.9ms)[0m  [1mCREATE INDEX `index_spud_inquiry_form_fields_on_field_order` ON `spud_inquiry_form_fields` (`field_order`)[0m
+  [1m[35m (150.3ms)[0m  CREATE TABLE `spud_inquiry_forms` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `recipients` text, `subject` varchar(255), `url_name` varchar(255)) ENGINE=InnoDB
+  [1m[36m (170.4ms)[0m  [1mCREATE INDEX `index_spud_inquiry_forms_on_url_name` ON `spud_inquiry_forms` (`url_name`)[0m
+  [1m[35m (149.4ms)[0m  CREATE TABLE `spud_user_settings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `spud_user_id` int(11), `key` varchar(255), `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (164.5ms)[0m  [1mCREATE TABLE `spud_users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `first_name` varchar(255), `last_name` varchar(255), `super_admin` tinyint(1), `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(255) NOT NULL, `password_salt` varchar(255) NOT NULL, `persistence_token` varchar(255) NOT NULL, `single_access_token` varchar(255) NOT NULL, `perishable_token` varchar(255) NOT NULL, `login_count` int(11) DEFAULT 0 NOT NULL, `failed_login_count` int(11) DEFAULT 0 NOT NULL, `last_request_at` datetime, `current_login_at` datetime, `last_login_at` datetime, `current_login_ip` varchar(255), `last_login_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `time_zone` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (159.1ms)[0m  CREATE INDEX `index_spud_users_on_email` ON `spud_users` (`email`)
+  [1m[36m (155.5ms)[0m  [1mCREATE INDEX `index_spud_users_on_login` ON `spud_users` (`login`)[0m
+  [1m[35m (161.0ms)[0m  CREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB
+  [1m[36m (172.6ms)[0m  [1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120610131541')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120117133405')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120117133412')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120121194439')
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120121194447')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120122173829')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120126132407')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120126132522')
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20120127023335')[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20120413124900')
