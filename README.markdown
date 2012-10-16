@@ -40,3 +40,22 @@ Creating a Contact Form
 -----------------------
 Creating a contact form is still fairly new and improvements will be made as time goes on. To create a new form, go to the Inquiries app inside of your spud admin panel. Click the forms button to manage various forms. Here you can set the form name, any content (html safe) you wish to render before the form renders, and add the form fields to the form (Email address is currently at the top of all forms and not adjustable).
 
+Testing
+-----------------
+
+Spud uses RSpec for testing. Get the tests running with a few short commands:
+
+1. Create and migrate the databases:
+   
+        rake db:create
+        rake db:migrate
+
+2. Load the schema in to the test database:
+
+        rake app:db:test:prepare
+
+3. Run the tests with RSpec
+
+        rspec spec
+
+After the tests have completed the current code coverage stats is available by opening ```/coverage/index.html``` in a browser.
