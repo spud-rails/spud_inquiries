@@ -1,0 +1,34 @@
+
+<%=form_for :spud_inquiry, :url => "/contact/inquire",:html => {:class => "form-horizontal"} do |f|%>
+<fieldset>
+<%=f.hidden_field :spud_inquiry_form_id,:value => inquiry_form.id%>
+
+  <%inquiry_form.spud_inquiry_form_fields.each do |field|%>
+    <div class="control-group">
+      <%=f.label field.name,:class => "control-label"%>
+      <div class="controls">
+        <%=case field.field_type
+          when '0'
+            f.text_field field.name,:value => field.default_value
+          when '1'
+            f.check_box field.name,:value => field.default_value
+          when '2'
+            f.text_area field.name,:value => field.default_value,:rows=>5,:cols => 70
+          when '3'
+            f.select field.name,field.options_list.collect {|opt| [opt,opt]},:include_blank => true
+        end%>
+      </div>
+    </div>
+  <%end%>
+  <div class="spud_inquiry_hide">
+    <label id='other_email_label' for='other_email'>Please leave blank:</label>
+    <input type='text' name='other_email' id='other_email'>
+  </div>
+  <div class="form-actions">
+    <%=f.submit "Submit Inquiry",:class => "btn btn-primary"%>
+  </div>
+
+
+</fieldset>
+
+<%end%>

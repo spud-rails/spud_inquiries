@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 	caches_action :show,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
 	caches_action :thankyou,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
+	skip_before_filter :verify_authenticity_token
 	layout Spud::Inquiries.base_layout
 	def show
 		url_name = !params[:id].blank? ? params[:id] : Spud::Inquiries.default_contact_form
@@ -12,13 +13,13 @@ class ContactsController < ApplicationController
 			redirect_to root_url and return
 		end
 		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
-		
+
 	end
 
 	def inquire
 		if !params[:other_email].blank?
 			flash[:error] = "You must be a robot! No robots allowed here!"
-			redirect_to request.referer and return			
+			redirect_to request.referer and return
 		end
 		unless params[:spud_inquiry]
 			flash[:error] = "Inquiry Not Found!"
@@ -27,13 +28,13 @@ class ContactsController < ApplicationController
 		@inquiry_form = SpudInquiryForm.find(params[:spud_inquiry][:spud_inquiry_form_id])
 		if @inquiry_form.blank?
 			flash[:error] = "Form Not Found!"
-			redirect_to request.referer and return 
+			redirect_to request.referer and return
 		end
-		@inquiry = SpudInquiry.new(:email => params[:spud_inquiry][:email],:spud_inquiry_form_id => params[:spud_inquiry][:spud_inquiry_form_id])
-		
+		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => params[:spud_inquiry][:spud_inquiry_form_id])
+
 		@inquiry.recipients = @inquiry_form.recipients
 		@inquiry.subject = @inquiry_form.subject
-		
+
 		@inquiry_form.spud_inquiry_form_fields.order(:field_order).all.each do |field|
 			val = params[:spud_inquiry][field.name]
 			if field.required && val.blank?
@@ -63,7 +64,9 @@ class ContactsController < ApplicationController
 		redirect_to contact_thankyou_url
 	end
 
+
+
 	def thankyou
 		render
-	end	
+	end
 end

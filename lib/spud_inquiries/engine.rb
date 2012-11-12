@@ -10,7 +10,10 @@ module Spud
 						config.sitemap_urls += [:spud_inquiries_sitemap_url]
 					end
 				end
-				
+			end
+
+			initializer :liquid_form do
+		    Liquid::Template.register_tag('inquiry', Spud::Inquiries::InquiryForm) if defined?(Liquid::Template)
 			end
 		 end
 	end

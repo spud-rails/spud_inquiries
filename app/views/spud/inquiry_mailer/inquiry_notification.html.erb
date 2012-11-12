@@ -5,7 +5,7 @@
   </head>
 <body>
 <h2>Inquiry Received</h2>
-<p><strong>From:</strong> <%=link_to @inquiry.email,"mailto:#{@inquiry.email}"%></p>
+
 	<%@inquiry.spud_inquiry_fields.each do |field|%>
 		<p><strong><%=field.name%></strong>
 		<%=field.value%>

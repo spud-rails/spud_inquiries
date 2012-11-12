@@ -8,11 +8,16 @@ Rails.application.routes.draw do
          resource :sitemap,:only => [:show]
       end
    end
-   match "/contact" => "contacts#show"
+
    post "contact/inquire" => "contacts#inquire"
    match "contact/thankyou" => "contacts#thankyou"
-   match "/contact/:id" => "contacts#show"
+   if Spud::Inquiries.enable_routes
+      match "/contact" => "contacts#show"
+      match "/contact/:id" => "contacts#show"
+   end
 
-   
+
+
+
 end
 
