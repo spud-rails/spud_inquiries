@@ -25,7 +25,7 @@ class InquiryObserver < ActiveRecord::Observer
   end
 private
   def reset_cms_pages(record)
-    if defined? Spud::Cms::Engine
+    if SpudPageLiquidTag
       values = [record.name]
       values << @old_name if !@old_name.blank?
       SpudPageLiquidTag.where(:tag_name => "inquiry",:value => values).includes(:spud_page_partial).each do |tag|
@@ -38,7 +38,6 @@ private
 
     end
   end
-
 
 
 end
