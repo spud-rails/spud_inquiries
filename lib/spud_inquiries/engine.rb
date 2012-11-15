@@ -1,4 +1,5 @@
 require 'spud_core'
+require 'liquid'
 module Spud
 	module Inquiries
 		 class Engine < Rails::Engine
