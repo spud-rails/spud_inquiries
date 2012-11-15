@@ -1,3 +1,4 @@
+require 'liquid'
 module Spud
   module Inquiries
     class FormActionView < ActionView::Base
