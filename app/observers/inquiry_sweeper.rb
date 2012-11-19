@@ -1,4 +1,4 @@
-class InquiryObserver < ActiveRecord::Observer
+class InquirySweeper < ActionController::Caching::Sweeper
   observe :spud_inquiry_form,:spud_inquiry_form_field
 
   def before_save(record)
@@ -25,19 +25,23 @@ class InquiryObserver < ActiveRecord::Observer
   end
 private
   def reset_cms_pages(record)
-    if SpudPageLiquidTag
+    if defined? Spud::Cms::Engine #Is CMS Being Used?
       values = [record.name]
       values << @old_name if !@old_name.blank?
-      SpudPageLiquidTag.where(:tag_name => "inquiry",:value => values).includes(:spud_page_partial).each do |tag|
-        partial = tag.spud_page_partial
+      SpudPageLiquidTag.where(:tag_name => "inquiry",:value => values).includes(:attachment).each do |tag|
+        partial = tag.attachment
         partial.postprocess_content
         partial.save
-        partial.spud_page.updated_at = Time.now.utc
-        partial.spud_page.save
+        page = partial.try(:spud_page)
+        if page.blank? == false
+          page.updated_at = Time.now.utc
+          page.save
+        end
       end
 
     end
   end
+
 
 
 end
