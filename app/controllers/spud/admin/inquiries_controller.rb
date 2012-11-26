@@ -1,15 +1,16 @@
 class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 	layout 'spud/admin/detail'
 	belongs_to_spud_app :inquiries
-	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
+	add_breadcrumb "Inquiries", {:action => :index}
 	before_filter :load_inquiries,:only => [:edit,:update,:show,:destroy]
+
 	def index
 		@inquiries = SpudInquiry.order("created_at DESC").includes(:spud_inquiry_form).paginate :page => params[:page]
 		respond_with @inquiries
 	end
 
 	def show
-		add_breadcrumb "#{@inquiry.email || "Unknown"}", :spud_admin_inquiry_path
+		add_breadcrumb "#{@inquiry.email || "Unknown"}", ''
 		respond_with @inquiry
 	end
 
@@ -23,7 +24,7 @@ class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 			format.html {
 				flash[:error] = "Error removing inquiry!" if status == 500
 				flash[:notice] = "Inquiry removed!" if status == 200
-				redirect_to spud_admin_inquiries_path and return
+				redirect_to spud_core.admin_inquiries_path and return
 			}
 		end
 	end
@@ -32,7 +33,7 @@ private
 		@inquiry = SpudInquiry.where(:id => params[:id]).first
 		if @inquiry.blank?
 			flash[:error] = "Inquiry not found!"
-			redirect_to spud_admin_inquiries_path and return
+			redirect_to spud_core.admin_inquiries_path and return
 		end
 	end
 end

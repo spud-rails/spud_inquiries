@@ -1,19 +1,19 @@
 class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 	layout 'spud/admin/detail'
-	belongs_to_spud_app :inquiries
+	belongs_to_spud_app :inquiries, :title => "Inquiry Forms"
 	cache_sweeper :inquiry_sweeper, :only => [:update,:destroy,:create]
-	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
-	add_breadcrumb "Forms", :spud_admin_inquiry_forms_path
+	add_breadcrumb "Inquiries", {:controller => "/spud/admin/inquiries", :action => :index}
+	add_breadcrumb "Forms", {:action => :index}
+	add_breadcrumb "New", '',:only =>  [:new, :create]
+	add_breadcrumb "Edit", '',:only => [:edit, :update]
 	before_filter :load_form,:only => [:edit,:update,:show,:destroy]
 	def index
 
-		@page_name = "Inquiry Forms"
 		@inquiry_forms = SpudInquiryForm.order(:name).paginate :page => params[:page]
 		respond_with @inquiry_forms
 	end
 
 	def new
-		@page_name = "New Inquiry Form"
 		@inquiry_form = SpudInquiryForm.new
 		respond_with @inquiry_form
 	end
@@ -22,21 +22,19 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 		@inquiry_form = SpudInquiryForm.new(params[:spud_inquiry_form])
 		flash[:notice] = "Form saved successfully!" if @inquiry_form.save
 
-		respond_with @inquiry_form,:location => spud_admin_inquiry_forms_url
+		respond_with @inquiry_form,:location => spud_core.admin_inquiry_forms_url
 	end
 
 	def edit
-		@page_name = "Edit Inquiry Form"
 		respond_with @inquiry_form
 	end
 
 	def update
-		@page_name = "Edit Inquiry Form"
 		flash[:notice] = "Form saved successfully!" if @inquiry_form.update_attributes(params[:spud_inquiry_form])
 		if Spud::Inquiries.enable_action_caching
 			Rails.cache.clear
 		end
-		respond_with @inquiry_form, :location => spud_admin_inquiry_forms_url
+		respond_with @inquiry_form, :location => spud_core.admin_inquiry_forms_url
 	end
 
 	def destroy
@@ -44,14 +42,14 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 		if Spud::Inquiries.enable_action_caching
 			Rails.cache.clear
 		end
-		respond_with @inquiry_form,:location => spud_admin_inquiry_forms_url
+		respond_with @inquiry_form,:location => spud_core.admin_inquiry_forms_url
 	end
 private
 	def load_form
 		@inquiry_form = SpudInquiryForm.where(:id => params[:id]).first
 		if @inquiry_form.blank?
 			flash[:error] = "Inquiry Form not found!"
-			redirect_to spud_admin_inquiry_forms_url() and return
+			redirect_to spud_core.admin_inquiry_forms_url() and return
 		end
 	end
 end

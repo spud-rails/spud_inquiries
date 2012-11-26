@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
 
 		if @inquiry_form.blank?
 			flash[:error] = "Contact Inquiry Form not found!"
-			redirect_to root_url and return
+			redirect_to main_app.root_url and return
 		end
 		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
 
@@ -61,7 +61,7 @@ class ContactsController < ApplicationController
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
 			render :action => "show" and return
 		end
-		redirect_to contact_thankyou_url
+		redirect_to spud_inquiries.thankyou_url
 	end
 
 
