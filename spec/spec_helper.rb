@@ -41,3 +41,12 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+Spud::Core::Engine.routes.draw do
+    default_url_options :host => "test.host"
+end
+
+Spud::Inquiries::Engine.routes.draw do
+    default_url_options :host => "test.host"
+end
+
