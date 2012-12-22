@@ -37,8 +37,6 @@ class ContactsController < ApplicationController
 		@inquiry_form.spud_inquiry_form_fields.order(:field_order).all.each do |field|
 			val = params[:spud_inquiry][field.name]
 			if field.required && val.blank?
-				puts params[:spud_inquiry]
-				puts field.name
 				flash[:error] = "Not all required fields were entered"
 				@inquiry.errors.add field.name,"is a required field"
 			end
