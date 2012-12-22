@@ -1,6 +1,6 @@
 Spud Inquiries
 ==============
-
+[![Build Status](https://secure.travis-ci.org/spud-rails/spud_inquiries.png)](http://travis-ci.org/spud-rials/spud_inquiries)
 Spud Inquiries is a Spud Engine designed to make it easier to generate contact forms and send email notifications when these inquiries occur. This engine works great with the spud_cms engine but it is fully capable of running standalone with spud_core.
 
 Installation/Usage
@@ -46,7 +46,7 @@ Testing
 Spud uses RSpec for testing. Get the tests running with a few short commands:
 
 1. Create and migrate the databases:
-   
+
         rake db:create
         rake db:migrate
 
