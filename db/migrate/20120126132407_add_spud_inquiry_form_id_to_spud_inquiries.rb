@@ -5,7 +5,7 @@ class AddSpudInquiryFormIdToSpudInquiries < ActiveRecord::Migration
     add_column :spud_inquiries, :subject,:string
     add_column :spud_inquiries, :marked_as_read,:boolean,:default => false
 
-    add_index :spud_inquiries, :marked_as_read
-    add_index :spud_inquiries, :spud_inquiry_form_id
+    add_index :spud_inquiries, :marked_as_read, :name => "idx_inquiry_read"
+    add_index :spud_inquiries, :spud_inquiry_form_id, :name => "idx_inquiry_form"
   end
 end

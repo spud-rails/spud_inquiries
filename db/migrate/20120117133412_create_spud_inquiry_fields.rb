@@ -8,6 +8,6 @@ class CreateSpudInquiryFields < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :spud_inquiry_fields,:spud_inquiry_id
+    add_index :spud_inquiry_fields,:spud_inquiry_id, :name => "inquiry_field_parent_id"
   end
 end

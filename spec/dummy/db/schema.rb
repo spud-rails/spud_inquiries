@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20120610131541) do
     t.boolean  "marked_as_read",       :default => false
   end
 
-  add_index "spud_inquiries", ["marked_as_read"], :name => "index_spud_inquiries_on_marked_as_read"
-  add_index "spud_inquiries", ["spud_inquiry_form_id"], :name => "index_spud_inquiries_on_spud_inquiry_form_id"
+  add_index "spud_inquiries", ["marked_as_read"], :name => "idx_inquiry_read"
+  add_index "spud_inquiries", ["spud_inquiry_form_id"], :name => "idx_inquiry_form"
 
   create_table "spud_inquiry_fields", :force => true do |t|
     t.string   "name"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20120610131541) do
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "spud_inquiry_fields", ["spud_inquiry_id"], :name => "index_spud_inquiry_fields_on_spud_inquiry_id"
+  add_index "spud_inquiry_fields", ["spud_inquiry_id"], :name => "inquiry_field_parent_id"
 
   create_table "spud_inquiry_form_fields", :force => true do |t|
     t.integer  "spud_inquiry_form_id"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20120610131541) do
     t.boolean  "required"
   end
 
-  add_index "spud_inquiry_form_fields", ["field_order"], :name => "index_spud_inquiry_form_fields_on_field_order"
+  add_index "spud_inquiry_form_fields", ["field_order"], :name => "form_field_order"
 
   create_table "spud_inquiry_forms", :force => true do |t|
     t.string   "name"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20120610131541) do
     t.string   "url_name"
   end
 
-  add_index "spud_inquiry_forms", ["url_name"], :name => "index_spud_inquiry_forms_on_url_name"
+  add_index "spud_inquiry_forms", ["url_name"], :name => "idx_form_url_name"
 
   create_table "spud_user_settings", :force => true do |t|
     t.integer  "spud_user_id"
