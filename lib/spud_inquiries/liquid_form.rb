@@ -3,6 +3,8 @@ module Spud
   module Inquiries
     class FormActionView < ActionView::Base
        include ActionView::Helpers
+       include Spud::Inquiries::Engine.routes.url_helpers
+       include Spud::Inquiries::Engine.routes.mounted_helpers
        def protect_against_forgery?
         return false
        end
