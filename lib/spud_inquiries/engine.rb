@@ -15,6 +15,10 @@ module Spud
 			end
 
 			initializer :liquid_form do
+				Spud::Inquiries::FormActionView.class_eval do
+					include Spud::Inquiries::Engine.routes.url_helpers
+	        include Spud::Inquiries::Engine.routes.mounted_helpers
+				end
 		    Liquid::Template.register_tag('inquiry', Spud::Inquiries::InquiryForm) if defined?(Liquid::Template)
 			end
 		 end
