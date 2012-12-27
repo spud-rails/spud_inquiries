@@ -21,7 +21,7 @@ end
 
 Rails.application.routes.draw do
   if Spud::Inquiries.config.automount
-    mount Spud::Inquiries::Engine, :at => "/contact"
+    mount Spud::Inquiries::Engine, :at => "/contact/"
   end
 end
 
