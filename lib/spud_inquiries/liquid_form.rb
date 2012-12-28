@@ -30,7 +30,7 @@ module Spud
         if !@inquiry_form.blank?
           @inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
           @view.render(
-            :partial => "/contacts/show",
+            :partial => "/contacts/show_liquid",
             :locals => {:inquiry => @inquiry, :inquiry_form => @inquiry_form}
           )
         else

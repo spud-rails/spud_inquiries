@@ -10,9 +10,9 @@ describe SpudInquiryField do
       p.should be_valid
     end
 
-    it "should not be valid if inquiry is blank" do
-      p = FactoryGirl.build(:spud_inquiry_field, :spud_inquiry => nil)
-      p.should_not be_valid
-    end
+    # it "should not be valid if inquiry is blank" do
+    #   p = FactoryGirl.build(:spud_inquiry_field, :spud_inquiry => nil)
+    #   p.should_not be_valid
+    # end
   end
 end

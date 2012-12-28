@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
 	caches_action :thankyou,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
 	skip_before_filter :verify_authenticity_token
 	layout Spud::Inquiries.base_layout
-
+	respond_to :html,:js
 	def show
 		url_name      = !params[:id].blank? ? params[:id] : Spud::Inquiries.default_contact_form
 		@inquiry_form = SpudInquiryForm.where(:url_name => url_name).includes(:spud_inquiry_form_fields).first
@@ -44,7 +44,11 @@ class ContactsController < ApplicationController
 		end
 
 		if !@inquiry.errors.empty?
-			render :action => "show" and return
+			respond_to do |format|
+				format.html {render :action => "show"}
+				format.js { render "show.js.erb"}
+			end
+			return
 		end
 		if @inquiry.save
 			flash[:notice] = "Your inquiry was received!"
@@ -53,9 +57,17 @@ class ContactsController < ApplicationController
 			end
 		else
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
-			render :action => "show" and return
+			respond_to do |format|
+				format.html {render :action => "show"}
+				format.js { render "show.js.erb"}
+			end
+			return
 		end
-		redirect_to spud_inquiries.thankyou_url
+		respond_to do |format|
+			format.html { redirect_to spud_inquiries.thankyou_url }
+			format.js { render "thankyou.js.erb"}
+		end
+
 	end
 
 

@@ -1,0 +1,1 @@
+$('#inquiry_form_<%=@inquiry_form.id%>').replaceWith("<%=escape_javascript(@inquiry_form.thank_you_content ? @inquiry_form.thank_you_content.html_safe : 'Thank You')%>");

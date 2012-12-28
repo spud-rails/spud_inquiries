@@ -1,9 +1,9 @@
 <%=error_messages_for(f.object)%>
 <fieldset>
   <legend>Form Info</legend>
-  
+
 	  <div class="control-group">
-	      
+
 	    	<%=f.label :name, :required=>true, :class=>"control-label"%>
 		<div class="controls">
 			<%=f.text_field :name%>
@@ -17,17 +17,23 @@
       </div>
       <div class="control-group">
 	    	<%=f.label :subject, :required=>true, :class=>"control-label"%>
-		<div class="controls">
-			<%=f.text_field :subject%>
-		</div>
+    		<div class="controls">
+    			<%=f.text_field :subject%>
+    		</div>
       </div>
       <div class="control-group">
 	    	<%=f.label :content, :required=>true, :class=>"control-label"%>
-			<div class="controls">
-				<%=f.text_area :content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
-			</div>
+  			<div class="controls">
+  				<%=f.text_area :content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
+  			</div>
       </div>
-  
+      <div class="control-group">
+        <%=f.label :thank_you_content,"Thank You Text", :required=>true, :class=>"control-label"%>
+        <div class="controls">
+          <%=f.text_area :thank_you_content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
+        </div>
+      </div>
+
 </fieldset>
 <fieldset>
   <legend>Fields</legend>

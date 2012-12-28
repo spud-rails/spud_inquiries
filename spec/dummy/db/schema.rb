@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120610131541) do
+ActiveRecord::Schema.define(:version => 20121228145215) do
 
   create_table "spud_admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -62,11 +62,12 @@ ActiveRecord::Schema.define(:version => 20120610131541) do
   create_table "spud_inquiry_forms", :force => true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.text     "recipients"
     t.string   "subject"
     t.string   "url_name"
+    t.text     "thank_you_content"
   end
 
   add_index "spud_inquiry_forms", ["url_name"], :name => "idx_form_url_name"
