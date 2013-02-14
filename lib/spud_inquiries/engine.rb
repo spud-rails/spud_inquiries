@@ -7,7 +7,7 @@ module Spud
 
 			initializer :admin do
 				Spud::Core.configure do |config|
-					config.admin_applications += [{:name => "Inquiries",:thumbnail => "spud/admin/contacts_thumb.png",:url => {:controller => "/spud/admin/inquiries"},:order => 88}]
+					config.admin_applications += [{:name => "Inquiries",:thumbnail => "spud/admin/contacts_thumb.png",:url => "/spud/admin/inquiries",:order => 88}]
 					if Spud::Inquiries.enable_sitemap == true
 						config.sitemap_urls += [:spud_inquiries_sitemap_url]
 					end
