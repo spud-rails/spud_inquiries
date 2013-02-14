@@ -1,6 +1,6 @@
 
 <%=form_for :spud_inquiry, :url => spud_inquiries.inquire_path,:html => {:class => "form-horizontal", :id => "inquiry_form_#{inquiry_form.id}"}, :remote => true do |f|%>
-<%=error_messages_for(@inquiry)%>
+<%#=error_messages_for(@inquiry)%>
 
 <fieldset>
 <%=f.hidden_field :spud_inquiry_form_id,:value => inquiry_form.id%>
