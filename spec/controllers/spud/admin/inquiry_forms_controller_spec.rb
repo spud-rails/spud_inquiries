@@ -17,14 +17,14 @@ describe Spud::Admin::InquiryFormsController do
   describe :index do
     it "should return an array of menus" do
       2.times {|x|  s = FactoryGirl.create(:spud_inquiry_form)}
-      get :index, :use_route => :spud_core
+      get :index
       assigns(:inquiry_forms).count.should be > 1
     end
   end
 
   describe :new do
     it "should respond with a new form" do
-      get :new, :use_route => :spud_core
+      get :new
       assigns(:inquiry_form).should_not be_blank
       response.should be_success
     end
@@ -33,14 +33,14 @@ describe Spud::Admin::InquiryFormsController do
   describe :create do
     it "should create a new form with a valid form submission" do
       lambda {
-        post :create, :use_route => :spud_core, :spud_inquiry_form => FactoryGirl.attributes_for(:spud_inquiry_form).reject{|k,v| k == 'site_id' || k == 'id'}
+        post :create, :spud_inquiry_form => FactoryGirl.attributes_for(:spud_inquiry_form).reject{|k,v| k == 'site_id' || k == 'id'}
       }.should change(SpudInquiryForm,:count).by(1)
       response.should be_redirect
     end
 
     it "should not create a form with an invalid form entry" do
       lambda {
-        post :create, :use_route => :spud_core, :spud_inquiry_form => FactoryGirl.attributes_for(:spud_inquiry_form,:name => nil).reject{|k,v| k == 'site_id' || k == 'id'}
+        post :create, :spud_inquiry_form => FactoryGirl.attributes_for(:spud_inquiry_form,:name => nil).reject{|k,v| k == 'site_id' || k == 'id'}
       }.should_not change(SpudInquiryForm,:count)
     end
   end
@@ -49,13 +49,13 @@ describe Spud::Admin::InquiryFormsController do
     it "should respond with form by id" do
       form1 = FactoryGirl.create(:spud_inquiry_form)
       form2 = FactoryGirl.create(:spud_inquiry_form)
-      get :edit, :use_route => :spud_core,:id => form2.id
+      get :edit,:id => form2.id
       assigns(:inquiry_form).should == form2
     end
 
     it "should redirect to index if form not found" do
-      get :edit, :use_route => :spud_core,:id => 1234
-      response.should redirect_to spud_core.admin_inquiry_forms_url
+      get :edit,:id => 1234
+      response.should redirect_to spud_admin_inquiry_forms_url
     end
   end
 
@@ -64,7 +64,7 @@ describe Spud::Admin::InquiryFormsController do
       form = FactoryGirl.create(:spud_inquiry_form)
       new_name = 'MyForm'
       lambda {
-        put :update, :use_route => :spud_core,:id => form.id, :spud_inquiry_form => form.attributes.merge!(:name => new_name).reject{|k,v| k == 'site_id' || k == 'id'}
+        put :update,:id => form.id, :spud_inquiry_form => form.attributes.merge!(:name => new_name).reject{|k,v| k == 'site_id' || k == 'id'}
         form.reload
       }.should change(form,:name).to(new_name)
 
@@ -72,8 +72,8 @@ describe Spud::Admin::InquiryFormsController do
 
     it "should redirect to the admin forms after a successful update" do
       form = FactoryGirl.create(:spud_inquiry_form)
-      put :update, :use_route => :spud_core,:id => form.id,:spud_menu => form.attributes.merge!(:name => "MyMenu").reject{|k,v| k == 'site_id' || k == 'id'}
-      response.should redirect_to(spud_core.admin_inquiry_forms_url)
+      put :update,:id => form.id,:spud_menu => form.attributes.merge!(:name => "MyMenu").reject{|k,v| k == 'site_id' || k == 'id'}
+      response.should redirect_to(spud_admin_inquiry_forms_url)
     end
   end
 
@@ -81,7 +81,7 @@ describe Spud::Admin::InquiryFormsController do
     it "should destroy the form" do
       form = FactoryGirl.create(:spud_inquiry_form)
       lambda {
-        delete :destroy, :use_route => :spud_core, :id => form.id
+        delete :destroy, :id => form.id
       }.should change(SpudInquiryForm,:count).by(-1)
       response.should be_redirect
     end
@@ -89,7 +89,7 @@ describe Spud::Admin::InquiryFormsController do
     it "should not destroy the form with a wrong id" do
       menu = FactoryGirl.create(:spud_inquiry_form)
       lambda {
-        delete :destroy, :use_route => :spud_core,:id => "23532"
+        delete :destroy,:id => "23532"
       }.should_not change(SpudInquiryForm,:count)
       response.should be_redirect
     end

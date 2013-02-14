@@ -22,7 +22,7 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 		@inquiry_form = SpudInquiryForm.new(params[:spud_inquiry_form])
 		flash[:notice] = "Form saved successfully!" if @inquiry_form.save
 
-		respond_with @inquiry_form,:location => spud_core.admin_inquiry_forms_url
+		respond_with @inquiry_form,:location => spud_admin_inquiry_forms_url
 	end
 
 	def edit
@@ -34,7 +34,7 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 		if Spud::Inquiries.enable_action_caching
 			Rails.cache.clear
 		end
-		respond_with @inquiry_form, :location => spud_core.admin_inquiry_forms_url
+		respond_with @inquiry_form, :location => spud_admin_inquiry_forms_url
 	end
 
 	def destroy
@@ -42,14 +42,14 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 		if Spud::Inquiries.enable_action_caching
 			Rails.cache.clear
 		end
-		respond_with @inquiry_form,:location => spud_core.admin_inquiry_forms_url
+		respond_with @inquiry_form,:location => spud_admin_inquiry_forms_url
 	end
 private
 	def load_form
 		@inquiry_form = SpudInquiryForm.where(:id => params[:id]).first
 		if @inquiry_form.blank?
 			flash[:error] = "Inquiry Form not found!"
-			redirect_to spud_core.admin_inquiry_forms_url() and return
+			redirect_to spud_admin_inquiry_forms_url() and return
 		end
 	end
 end

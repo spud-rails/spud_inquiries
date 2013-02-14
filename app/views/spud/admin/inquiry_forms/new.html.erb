@@ -1,7 +1,7 @@
-<%=form_for @inquiry_form,:url => spud_core.admin_inquiry_forms_path(),:html=>{:class=>"form-horizontal"} do |f|%>
+<%=form_for @inquiry_form,:url => spud_admin_inquiry_forms_path(),:html=>{:class=>"form-horizontal"} do |f|%>
 	<%=render :partial => "form",:locals => {:f => f}%>
 	<div class="form-actions">
-    	<%=f.submit "Create Form", :class=>"btn btn-primary","data-loading-text"=>"Saving..."%> or <%=link_to "cancel",spud_core.admin_inquiry_forms_path,:class => "btn"%>
+    	<%=f.submit "Create Form", :class=>"btn btn-primary","data-loading-text"=>"Saving..."%> or <%=link_to "cancel",spud_admin_inquiry_forms_path,:class => "btn"%>
     </div>
 <%end%>
 

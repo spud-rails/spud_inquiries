@@ -24,7 +24,7 @@ class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 			format.html {
 				flash[:error] = "Error removing inquiry!" if status == 500
 				flash[:notice] = "Inquiry removed!" if status == 200
-				redirect_to spud_core.admin_inquiries_path and return
+				redirect_to spud_admin_inquiries_path and return
 			}
 		end
 	end
@@ -33,7 +33,7 @@ private
 		@inquiry = SpudInquiry.where(:id => params[:id]).first
 		if @inquiry.blank?
 			flash[:error] = "Inquiry not found!"
-			redirect_to spud_core.admin_inquiries_path and return
+			redirect_to spud_admin_inquiries_path and return
 		end
 	end
 end

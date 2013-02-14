@@ -17,7 +17,7 @@ describe Spud::Admin::InquiriesController do
   describe :index do
     it "should return an array of menus" do
       2.times {|x|  s = FactoryGirl.create(:spud_inquiry)}
-      get :index, :use_route => :spud_core
+      get :index
       assigns(:inquiries).count.should be > 1
     end
   end
@@ -25,13 +25,13 @@ describe Spud::Admin::InquiriesController do
   describe :show do
     it "should return a preview of an inquiry" do
       s = FactoryGirl.create(:spud_inquiry)
-      get :show, :use_route => :spud_core, :id => s.id
+      get :show, :id => s.id
       assigns(:inquiry).should == s
     end
 
     it "should redirect to index if inquiry not found" do
-      get :show, :use_route => :spud_core, :id => 1234
-      response.should redirect_to spud_core.admin_inquiries_url
+      get :show, :id => 1234
+      response.should redirect_to spud_admin_inquiries_url
     end
   end
 
@@ -39,7 +39,7 @@ describe Spud::Admin::InquiriesController do
     it "should destroy the menu" do
       inquiry = FactoryGirl.create(:spud_inquiry)
       lambda {
-        delete :destroy, :use_route => :spud_core, :id => inquiry.id
+        delete :destroy, :id => inquiry.id
       }.should change(SpudInquiry,:count).by(-1)
       response.should be_redirect
     end
@@ -47,7 +47,7 @@ describe Spud::Admin::InquiriesController do
     it "should not destroy the menu with a wrong id" do
       inquiry = FactoryGirl.create(:spud_inquiry)
       lambda {
-        delete :destroy, :use_route => :spud_core,:id => "23532"
+        delete :destroy,:id => "23532"
       }.should_not change(SpudInquiry,:count)
       response.should be_redirect
     end

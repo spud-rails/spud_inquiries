@@ -64,7 +64,7 @@ class ContactsController < ApplicationController
 			return
 		end
 		respond_to do |format|
-			format.html { redirect_to spud_inquiries.thankyou_url }
+			format.html { redirect_to contact_thankyou_url }
 			format.js { render "thankyou.js.erb"}
 		end
 

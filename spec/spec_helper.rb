@@ -24,10 +24,7 @@ RSpec.configure do |config|
   config.mock_with :mocha
   config.use_transactional_fixtures = true
   config.infer_base_class_for_anonymous_controllers = false
-  config.include Spud::Core::Engine.routes.url_helpers
-  config.include Spud::Core::Engine.routes.mounted_helpers
-  config.include Spud::Inquiries::Engine.routes.url_helpers
-  config.include Spud::Inquiries::Engine.routes.mounted_helpers
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)

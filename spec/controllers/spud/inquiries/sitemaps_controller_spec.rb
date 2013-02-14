@@ -11,12 +11,12 @@ describe Spud::Inquiries::SitemapsController do
     end
 
     it "should return the sitemap urls" do
-      get :show, :use_route => :spud_core, :format => :xml
+      get :show, :format => :xml
       assigns(:forms).should == SpudInquiryForm.all
     end
 
     it "should only respond to an XML format" do
-      get :show, :use_route => :spud_core
+      get :show
       response.response_code.should == 406
     end
   end

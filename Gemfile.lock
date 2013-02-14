@@ -17,7 +17,7 @@ PATH
     spud_inquiries (0.10.0)
       liquid
       rails (~> 3.2.2)
-      spud_core (>= 0.10.0)
+      spud_core (>= 0.9.0)
 
 GEM
   remote: http://rubygems.org/
