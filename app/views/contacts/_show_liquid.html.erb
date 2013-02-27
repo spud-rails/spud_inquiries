@@ -1,5 +1,5 @@
 
-<%=form_for :spud_inquiry, :url => contact_inquire_path,:html => {:class => "form-horizontal", :id => "inquiry_form_#{inquiry_form.id}"}, :remote => true do |f|%>
+<%=form_for :spud_inquiry, :url => "/contact/inquire",:html => {:class => "form-horizontal", :id => "inquiry_form_#{inquiry_form.id}"}, :remote => true do |f|%>
 <fieldset>
 <%=f.hidden_field :spud_inquiry_form_id,:value => inquiry_form.id%>
 
