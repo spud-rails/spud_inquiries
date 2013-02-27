@@ -1,7 +1,7 @@
 class Spud::Admin::InquiriesController < Spud::Admin::ApplicationController
 	layout 'spud/admin/detail'
 	belongs_to_spud_app :inquiries
-	add_breadcrumb "Inquiries", {:action => :index}
+	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
 	before_filter :load_inquiries,:only => [:edit,:update,:show,:destroy]
 
 	def index

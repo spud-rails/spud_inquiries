@@ -2,8 +2,8 @@ class Spud::Admin::InquiryFormsController < Spud::Admin::ApplicationController
 	layout 'spud/admin/detail'
 	belongs_to_spud_app :inquiries, :title => "Inquiry Forms"
 	cache_sweeper :inquiry_sweeper, :only => [:update,:destroy,:create]
-	add_breadcrumb "Inquiries", {:controller => "/spud/admin/inquiries", :action => :index}
-	add_breadcrumb "Forms", {:action => :index}
+	add_breadcrumb "Inquiries", :spud_admin_inquiries_path
+	add_breadcrumb "Forms", :spud_admin_inquiry_forms_path
 	add_breadcrumb "New", '',:only =>  [:new, :create]
 	add_breadcrumb "Edit", '',:only => [:edit, :update]
 	before_filter :load_form,:only => [:edit,:update,:show,:destroy]
