@@ -15,7 +15,7 @@
           when '1'
             f.check_box field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
           when '2'
-            f.text_area field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name],:rows=>5,:cols => 70
+            f.text_area field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name],:rows=>5,:cols => 70, :placeholder => field.placeholder
           when '3'
             f.select field.name,field.options_list.collect {|opt| [opt,opt]},:include_blank => true
         end%>
