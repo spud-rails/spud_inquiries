@@ -19,12 +19,17 @@ Installation/Usage
 
 4. run a rails server instance and point your browser to /spud/admin
 
+Creating a Contact Form
+-----------------------
+Creating a contact form is still fairly new and improvements will be made as time goes on. To create a new form, go to the Inquiries app inside of your spud admin panel. Click the forms button to manage various forms. Here you can set the form name, any content (html safe) you wish to render before the form renders, and add the form fields to the form (Email address is currently at the top of all forms and not adjustable).
+
 Routing to the Inquiries Engine
 -------------------------------
 By default the inquiries gem routes the "/contact" url to the form named "contact". However this and other configuration options can be changed as shown below.
 
 
 		Spud::Inquiries.configure do |config|
+			config.enable_routes = true
 		    config.default_contact_form = "contact"
 		    config.base_layout = "application"
 		    config.from_address = "no-reply@example.org"
@@ -36,9 +41,15 @@ Where "contact" is the name of the form you wish to use (downcased,parameterized
 
 Inquiry will default render to the 'application' layout of your application. You can change this by adjusting the configuration option called "base_layout". More configuration options can be found in the Wiki "Configuration" page.
 
-Creating a Contact Form
------------------------
-Creating a contact form is still fairly new and improvements will be made as time goes on. To create a new form, go to the Inquiries app inside of your spud admin panel. Click the forms button to manage various forms. Here you can set the form name, any content (html safe) you wish to render before the form renders, and add the form fields to the form (Email address is currently at the top of all forms and not adjustable).
+Injecting Forms into Spud CMS Pages
+-----------------------------------
+Spud Supports the use of liquid tags to inject dynamic content into pages. In order to inject a contact form into a spud page simply use the following liquid tag in your content:
+
+```html
+ {% inquiry Contact %}
+```
+The above example will inject a form named "Contact" into your content.
+
 
 Testing
 -----------------
