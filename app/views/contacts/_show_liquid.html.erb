@@ -9,7 +9,7 @@
       <div class="controls">
         <%=case field.field_type
           when '0'
-            f.text_field field.name,:value => field.default_value
+            f.text_field field.name,:value => field.default_value, :placeholder => field.placeholder
           when '1'
             f.check_box field.name,:value => field.default_value
           when '2'

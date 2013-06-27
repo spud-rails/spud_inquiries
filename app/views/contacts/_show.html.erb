@@ -11,7 +11,7 @@
       <div class="controls">
         <%=case field.field_type
           when '0'
-            f.text_field field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
+            f.text_field field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name], :placeholder => field.placeholder
           when '1'
             f.check_box field.name,:value => params[:spud_inquiry].blank? || params[:spud_inquiry][field.name].blank? ? field.default_value : params[:spud_inquiry][field.name]
           when '2'
