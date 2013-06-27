@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228145215) do
+ActiveRecord::Schema.define(:version => 20130627121030) do
 
   create_table "spud_admin_permissions", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20121228145215) do
     t.datetime "updated_at",           :null => false
     t.integer  "field_order"
     t.boolean  "required"
+    t.string   "placeholder"
   end
 
   add_index "spud_inquiry_form_fields", ["field_order"], :name => "form_field_order"

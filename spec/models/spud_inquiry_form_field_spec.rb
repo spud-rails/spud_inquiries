@@ -20,10 +20,10 @@ describe SpudInquiryFormField do
       p.should_not be_valid
     end
 
-    it "should not be valid if form is blank" do
-      p = FactoryGirl.build(:spud_inquiry_form_field, :spud_inquiry_form => nil)
-      p.should_not be_valid
-    end
+    # it "should not be valid if form is blank" do
+    #   p = FactoryGirl.build(:spud_inquiry_form_field, :spud_inquiry_form => nil)
+    #   p.should_not be_valid
+    # end
   end
 
   describe :accessors do
