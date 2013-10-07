@@ -32,7 +32,10 @@ private
         partial = tag.attachment
         partial.postprocess_content
         partial.save
-        page = partial.try(:spud_page)
+        page = nil
+        if(partial.attributes.has_key? 'spud_page')
+          page = partial.try(:spud_page)
+        end
         if page.blank? == false
           page.updated_at = Time.now.utc
           page.save
