@@ -2,7 +2,7 @@
 <%=@inquiry_form.content.html_safe if !@inquiry_form.content.blank?%>
 
 <%=form_for :spud_inquiry, :url => contact_inquire_url,:html => {:class => "form-horizontal"} do |f|%>
-<%=error_messages_for(@inquiry)%>
+<%=error_messages_for(@spud_inquiry)%>
 <fieldset>
 <%=f.hidden_field :spud_inquiry_form_id,:value => @inquiry_form.id%>
 

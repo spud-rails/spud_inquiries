@@ -8,11 +8,11 @@ class ContactsController < ApplicationController
 		url_name      = !params[:id].blank? ? params[:id] : Spud::Inquiries.default_contact_form
 		@inquiry_form = SpudInquiryForm.where(:url_name => url_name).includes(:spud_inquiry_form_fields).first
 
-		if @inquiry_form.blank?
+		if @spud_inquiry_form.blank?
 			flash[:error] = "Contact Inquiry Form not found!"
 			redirect_to "/" and return
 		end
-		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
+		@spud_inquiry = SpudInquiry.new(:spud_inquiry_form_id => @inquiry_form.id)
 	end
 
 	def inquire
@@ -29,31 +29,31 @@ class ContactsController < ApplicationController
 			flash[:error] = "Form Not Found!"
 			redirect_to request.referer || "/" and return
 		end
-		@inquiry = SpudInquiry.new(:spud_inquiry_form_id => params[:spud_inquiry][:spud_inquiry_form_id])
+		@spud_inquiry = SpudInquiry.new(:spud_inquiry_form_id => params[:spud_inquiry][:spud_inquiry_form_id])
 
-		@inquiry.recipients = @inquiry_form.recipients
-		@inquiry.subject = @inquiry_form.subject
+		@spud_inquiry.recipients = @inquiry_form.recipients
+		@spud_inquiry.subject = @inquiry_form.subject
 
 		@inquiry_form.spud_inquiry_form_fields.order(:field_order).all.each do |field|
 			val = params[:spud_inquiry][field.name]
 			if field.required && val.blank?
 				flash[:error] = "Not all required fields were entered"
-				@inquiry.errors.add field.name,"is a required field"
+				@spud_inquiry.errors.add field.name,"is a required field"
 			end
-			@inquiry.spud_inquiry_fields.new(:name => field.name,:value => val)
+			@spud_inquiry.spud_inquiry_fields.new(:name => field.name,:value => val)
 		end
 
-		if !@inquiry.errors.empty?
+		if !@spud_inquiry.errors.empty?
 			respond_to do |format|
 				format.html {render :action => "show"}
 				format.js { render "show.js.erb"}
 			end
 			return
 		end
-		if @inquiry.save
+		if @spud_inquiry.save
 			flash[:notice] = "Your inquiry was received!"
-			if !@inquiry.recipients.blank?
-				Spud::InquiryMailer.inquiry_notification(@inquiry).deliver
+			if !@spud_inquiry.recipients.blank?
+				Spud::InquiryMailer.inquiry_notification(@spud_inquiry).deliver
 			end
 		else
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
