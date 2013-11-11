@@ -33,6 +33,12 @@
           <%=f.text_area :thank_you_content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
         </div>
       </div>
+      <div class="control-group">
+        <%=f.label :submit_title, "Submit Button Title", :required=>true, :class=>"control-label"%>
+        <div class="controls">
+          <%=f.text_field :submit_title%>
+        </div>
+      </div>
 
 </fieldset>
 <fieldset>

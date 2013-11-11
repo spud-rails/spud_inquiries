@@ -13,7 +13,7 @@ group :test do
   gem 'database_cleaner', '0.7.1'
 end
 
-gem 'spud_core', :git => "git://github.com/spud-rails/spud_core_admin.git", :branch => "mountable"
+gem 'spud_core'#, :git => "git://github.com/spud-rails/spud_core_admin.git", :branch => "mountable"
 
 gemspec
 

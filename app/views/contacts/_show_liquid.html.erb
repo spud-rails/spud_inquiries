@@ -4,18 +4,18 @@
 <%=f.hidden_field :spud_inquiry_form_id,:value => inquiry_form.id%>
 
   <%inquiry_form.spud_inquiry_form_fields.each do |field|%>
-    <div class="control-group type_<%=field.field_type%>">
-      <%=f.label field.name,:class => "control-label"%>
+    <div class="control-group type_<%=field.field_type%> <%=field.class_name ? field.class_name : ''%>">
+      <%=f.label field.field_name, field.name,:class => "control-label"%>
       <div class="controls">
         <%=case field.field_type
           when '0'
-            f.text_field field.name,:value => field.default_value, :placeholder => field.placeholder
+            f.text_field field.field_name,:value => field.default_value, :placeholder => field.placeholder
           when '1'
-            f.check_box field.name,:value => field.default_value
+            f.check_box field.field_name,:value => field.default_value
           when '2'
-            f.text_area field.name,:value => field.default_value,:rows=>5,:cols => 70, :placeholder => field.placeholder
+            f.text_area field.field_name,:value => field.default_value,:rows=>5,:cols => 70, :placeholder => field.placeholder
           when '3'
-            f.select field.name,field.options_list.collect {|opt| [opt,opt]},:include_blank => true
+            f.select field.field_name,options_for_select(field.options_list.collect {|opt| [opt,opt]}, field.default_value),:include_blank => true
         end%>
       </div>
     </div>
@@ -25,7 +25,7 @@
     <input type='text' name='other_email' id='other_email'>
   </div>
   <div class="form-actions">
-    <%=f.submit "Submit Inquiry",:class => "btn btn-primary"%>
+    <%=f.submit "#{inquiry_form.submit_title || 'Submit Inquiry'}",:class => "btn btn-primary"%>
   </div>
 
 
