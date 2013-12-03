@@ -13,4 +13,17 @@ class SpudInquiry < ActiveRecord::Base
     end
     return "Unknown Sender"
   end
+
+  # def self.method_missing(method_sym, *arguments, &block)
+  #   # the first argument is a Symbol, so you need to_s it if you want to pattern match
+  #   if
+  #     find($1.to_sym => arguments.first)
+  #   else
+  #     super
+  #   end
+  # end
+
+  def self.respond_to?(method_sym, include_private = false)
+    return true
+  end
 end
