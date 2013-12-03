@@ -15,7 +15,7 @@
           when '2'
             f.text_area field.field_name,:value => field.default_value,:rows=>5,:cols => 70, :placeholder => field.placeholder
           when '3'
-            f.select field.field_name,options_for_select(field.options_list.collect {|opt| [opt,opt]}, field.default_value),:include_blank => true
+            f.select field.field_name,options_for_select(field.options_list.collect {|opt| [opt,opt]}, field.default_value)#,:include_blank => true
         end%>
       </div>
     </div>
