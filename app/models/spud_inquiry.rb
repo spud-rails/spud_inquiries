@@ -14,4 +14,25 @@ class SpudInquiry < ActiveRecord::Base
     return "Unknown Sender"
   end
 
+
+  # If a property is not defined here we want to check the dynamic fields list
+  def method_missing(sym, *args)
+    inquiry_field = self.spud_inquiry_fields.select{ |inquiry_field| inquiry_field.field_name == sym.to_s}
+    if inquiry_field.any?
+      return inquiry_field[0].value
+    end
+    super
+  end
+
+  def respond_to?(sym, include_all=false)
+    default_responds = super
+    if !default_responds
+      inquiry_field = self.spud_inquiry_fields.select{ |inquiry_field| inquiry_field.field_name == sym.to_s}
+      if inquiry_field.any?
+        return true
+      end
+    end
+    return default_responds
+  end
+
 end

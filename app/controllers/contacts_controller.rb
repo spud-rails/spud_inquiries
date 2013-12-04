@@ -40,12 +40,7 @@ class ContactsController < ApplicationController
 				flash[:error] = "Not all required fields were entered"
 				@spud_inquiry.errors.add field.field_name,"is a required field"
 			end
-			if !@spud_inquiry.respond_to?(field.field_name.to_sym)
-				class << @spud_inquiry
-			    attr_accessor  field.field_name.to_sym
-			  end
-			end
-			@spud_inquiry.spud_inquiry_fields.new(:name => field.name,:value => val)
+			@spud_inquiry.spud_inquiry_fields.new(:name => field.name, :field_name => field.field_name,:value => val)
 		end
 
 		if !@spud_inquiry.errors.empty?
