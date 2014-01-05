@@ -1,6 +1,6 @@
 class SpudInquiryForm < ActiveRecord::Base
 	has_many :spud_inquiries, :dependent => :nullify
-	has_many :spud_inquiry_form_fields,:dependent => :destroy,:order => "field_order ASC"
+	has_many :spud_inquiry_form_fields, -> { order :field_order},:dependent => :destroy
 
   accepts_nested_attributes_for :spud_inquiry_form_fields, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
@@ -18,10 +18,15 @@ class SpudInquiryForm < ActiveRecord::Base
   end
 
   def expire_cache
+  	if !defined?(SpudPageLiquidTag)
+  		return
+  	end
     # Now Time to Update Parent Entries
     old_name = self.name_was
     values = [self.name]
     values << old_name if !old_name.blank?
+
+
     SpudPageLiquidTag.where(:tag_name => "inquiry",:value => values).includes(:attachment).each do |tag|
       partial = tag.touch
     end

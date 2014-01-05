@@ -3,6 +3,9 @@ source "http://rubygems.org"
 # Declare your gem's dependencies in spud_cms.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
+group :development do
+	gem 'spud_core', :path => "../spud_core_admin"
+end
 group :test do
   gem 'mysql2'
   gem 'rspec', '2.14.0'
@@ -14,7 +17,6 @@ group :test do
   gem 'rake'
 end
 
-gem 'spud_core'#, :git => "git://github.com/spud-rails/spud_core_admin.git", :branch => "mountable"
 
 gemspec
 
