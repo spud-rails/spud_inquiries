@@ -1,9 +1,9 @@
 class SpudInquiryFormField < ActiveRecord::Base
-	belongs_to :spud_inquiry_form
+	belongs_to :spud_inquiry_form, :touch => true
 	validates :name,:presence => true
 	validates :field_type,:presence => true
 	# validates :spud_inquiry_form_id, :presence => true
-	attr_accessible :name,:options,:default_value,:field_type,:spud_inquiry_form_id,:field_order,:required, :placeholder, :class_name
+	# attr_accessible :name,:options,:default_value,:field_type,:spud_inquiry_form_id,:field_order,:required, :placeholder, :class_name
 
 	before_save :update_field_name
 

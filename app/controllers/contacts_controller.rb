@@ -1,6 +1,4 @@
 class ContactsController < ApplicationController
-	caches_action :show,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
-	caches_action :thankyou,:if => Proc.new { |c| Spud::Inquiries.enable_action_caching }
 	skip_before_filter :verify_authenticity_token
 	layout Spud::Inquiries.base_layout
 	respond_to :html,:js

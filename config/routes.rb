@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     end
   end
   post "/contact/inquire" => "contacts#inquire"
-  match "/contact/thankyou" => "contacts#thankyou"
+  get "/contact/thankyou" => "contacts#thankyou"
   if Spud::Inquiries.enable_routes
-    match "/contact" => "contacts#show", :as => :contact
-    match "/contact/:id" => "contacts#show", :as => :contact
+    get "/contact" => "contacts#show", :as => :contact
+    get "/contact/:id" => "contacts#show", :as => :contact
   end
 end
