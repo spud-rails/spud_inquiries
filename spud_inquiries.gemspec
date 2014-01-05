@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Spud::Inquiries::VERSION
   s.authors     = ["David Estes"]
   s.email       = ["destes@redwindsw.com"]
-  s.homepage    = "http://www.github.com/davydotcom/spud_inquiries"
+  s.homepage    = "http://www.github.com/spud-rails/spud_inquiries"
   s.summary     = "Inquiry form builder and mailer for spud (Useful for Contact Forms)."
   s.description = "This gem allows you to build forms for user submission and can send email notifications when a form is filled out."
 
