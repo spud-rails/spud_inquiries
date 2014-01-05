@@ -7,8 +7,9 @@ class SpudInquiryForm < ActiveRecord::Base
 	validates :name,:presence => true,:uniqueness => true
 	validates :url_name,:presence => true, :uniqueness => true
 	before_validation :generate_url_name
-	after_save :expire_cache
+	after_save    :expire_cache
 	after_destroy :expire_cache
+  after_touch   :expire_cache
 	# attr_accessible :name,:url_name,:recipients,:content,:subject,:spud_inquiry_form_fields_attributes, :created_at, :updated_at, :thank_you_content, :submit_title
 
   def generate_url_name
