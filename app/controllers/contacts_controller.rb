@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
 		url_name      = !params[:id].blank? ? params[:id] : Spud::Inquiries.default_contact_form
 		@inquiry_form = SpudInquiryForm.where(:url_name => url_name).includes(:spud_inquiry_form_fields).first
 
-		if @spud_inquiry_form.blank?
+		if @inquiry_form.blank?
 			flash[:error] = "Contact Inquiry Form not found!"
 			redirect_to "/" and return
 		end

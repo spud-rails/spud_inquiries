@@ -14,7 +14,7 @@ describe ContactsController do
       form = FactoryGirl.create(:spud_inquiry_form)
       get :show, :id => form.url_name
       assigns(:inquiry_form).should == form
-      assigns(:inquiry).should_not be_blank
+      assigns(:spud_inquiry).should_not be_blank
     end
 
     it "should redirect to root if inquiry not found" do

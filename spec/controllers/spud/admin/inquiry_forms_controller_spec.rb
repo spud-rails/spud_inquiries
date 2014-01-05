@@ -72,7 +72,7 @@ describe Spud::Admin::InquiryFormsController do
 
     it "should redirect to the admin forms after a successful update" do
       form = FactoryGirl.create(:spud_inquiry_form)
-      put :update,:id => form.id,:spud_menu => form.attributes.merge!(:name => "MyMenu").reject{|k,v| k == 'site_id' || k == 'id'}
+      put :update,:id => form.id,:spud_inquiry_form => form.attributes.merge!(:name => "MyForm2").reject{|k,v| k == 'site_id' || k == 'id'}
       response.should redirect_to(spud_admin_inquiry_forms_url)
     end
   end
