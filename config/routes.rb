@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   post "/contact/inquire" => "contacts#inquire"
   get "/contact/thankyou" => "contacts#thankyou"
   if Spud::Inquiries.enable_routes
-    get "/contact" => "contacts#show", :as => :contact
-    get "/contact/:id" => "contacts#show", :as => :contact
+    get "/contact(/:id)" => "contacts#show", :as => :contact
   end
 end
