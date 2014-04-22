@@ -45,6 +45,18 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<%=f.label :validation_rule,:class => "control-label"%>
+			<div class="controls">
+				<%=f.text_field :validation_rule%>
+			</div>
+		</div>
+		<div class="control-group">
+			<%=f.label :validation_error_message,:class => "control-label"%>
+			<div class="controls">
+				<%=f.text_field :validation_error_message%>
+			</div>
+		</div>
+		<div class="control-group">
 			<%=f.label :required,:class => "control-label"%>
 			<div class="controls">
 				<%=f.check_box :required%>

@@ -38,6 +38,13 @@ class ContactsController < ApplicationController
 				flash[:error] = "Not all required fields were entered"
 				@spud_inquiry.errors.add field.field_name,"is a required field"
 			end
+
+			if field.validation_rule
+				if Regexp.new(field.validation_rule).match(val) == nil
+					flash[:error] = "Not all fields were valid"
+					@spud_inquiry.errors.add field.field_name, field.validation_error_message
+				end
+			end
 			@spud_inquiry.spud_inquiry_fields.new(:name => field.name, :field_name => field.field_name,:value => val)
 		end
 
