@@ -17,6 +17,9 @@
           when '3'
             f.select field.field_name,options_for_select(field.options_list.collect {|opt| [opt,opt]}, field.default_value),:include_blank => true
         end%>
+        <% if @spud_inquiry.errors[field.field_name].length > 0 %>
+          <span class="help-block"><% @spud_inquiry.errors[field.field_name].each do |error| %> <%= error %> <% end %></span>
+        <% end %>
       </div>
     </div>
   <%end%>
