@@ -19,7 +19,7 @@
           when '3'
             f.select field.field_name,options_for_select(field.options_list.collect {|opt| [opt,opt]}, params[:spud_inquiry].blank? || params[:spud_inquiry][field.field_name].blank? ? field.default_value : params[:spud_inquiry][field.field_name]), {:include_blank => true}
         end%>
-        <% if @spud_inquiry.errors[field.field_name].length > 0 %>
+        <% if @spud_inquiry != nil and @spud_inquiry.errors[field.field_name].length > 0 %>
           <span class="help-block"><% @spud_inquiry.errors[field.field_name].each do |error| %> <%= error %> <% end %></span>
         <% end %>
       </div>
