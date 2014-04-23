@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204163221) do
+ActiveRecord::Schema.define(version: 20140422015208) do
 
   create_table "spud_admin_permissions", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.boolean  "access"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "scope"
   end
 
   create_table "spud_inquiries", force: true do |t|
     t.string   "email"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "spud_inquiry_form_id"
     t.text     "recipients"
     t.string   "subject"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20131204163221) do
     t.string   "name"
     t.text     "value"
     t.integer  "spud_inquiry_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "field_name"
   end
 
@@ -52,13 +52,15 @@ ActiveRecord::Schema.define(version: 20131204163221) do
     t.string   "name"
     t.text     "options"
     t.string   "default_value"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "field_order"
     t.boolean  "required"
     t.string   "placeholder"
     t.string   "field_name"
     t.string   "class_name"
+    t.string   "validation_rule"
+    t.string   "validation_error_message"
   end
 
   add_index "spud_inquiry_form_fields", ["field_order"], name: "form_field_order", using: :btree
@@ -66,8 +68,8 @@ ActiveRecord::Schema.define(version: 20131204163221) do
   create_table "spud_inquiry_forms", force: true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "recipients"
     t.string   "subject"
     t.string   "url_name"
@@ -81,8 +83,8 @@ ActiveRecord::Schema.define(version: 20131204163221) do
     t.integer  "spud_user_id"
     t.string   "key"
     t.string   "value"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "spud_users", force: true do |t|
@@ -103,8 +105,8 @@ ActiveRecord::Schema.define(version: 20131204163221) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "time_zone"
   end
 
