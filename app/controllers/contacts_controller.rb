@@ -36,7 +36,7 @@ class ContactsController < ApplicationController
 			val = params[:spud_inquiry][field.field_name]
 			if field.required && val.blank?
 				flash[:error] = "Not all required fields were entered"
-				@spud_inquiry.errors.add field.field_name,"is a required field"
+				@spud_inquiry.errors.add field.field_name,"Please enter your " + field.name.downcase + "."
 			end
 
 			if field.validation_rule
