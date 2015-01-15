@@ -1,68 +1,69 @@
 <fieldset class="fields">
 	<hr/>
-		<div class="control-group">
-			<%=f.label :name,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :name%>
+		<div class="form-group">
+			<%=f.label :name,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :name, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :field_type,:class => "control-label"%>
-			<div class="controls">
-		  		<%=f.select :field_type, [["Text Field",0],["Checkbox",1],["Text Area",2],["Dropdown",3]]%>
+		<div class="form-group">
+			<%=f.label :field_type,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+		  		<%=f.select :field_type, [["Text Field",0],["Checkbox",1],["Text Area",2],["Dropdown",3]],{}, {:class => "form-control"}%>
 		  	</div>
 
 
 		</div>
-		<div class="control-group">
-			<%=f.label :placeholder,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :placeholder%>
+		<div class="form-group">
+			<%=f.label :placeholder,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :placeholder, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :options,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :options%>
+		<div class="form-group">
+			<%=f.label :options,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :options, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :default_value,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :default_value%>
+		<div class="form-group">
+			<%=f.label :default_value,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :default_value, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :class_name,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :class_name%>
+		<div class="form-group">
+			<%=f.label :class_name,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :class_name, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :field_order,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :field_order%>
+		<div class="form-group">
+			<%=f.label :field_order,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :field_order, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :validation_rule,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :validation_rule%>
+		<div class="form-group">
+			<%=f.label :validation_rule,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :validation_rule, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :validation_error_message,:class => "control-label"%>
-			<div class="controls">
-				<%=f.text_field :validation_error_message%>
+		<div class="form-group">
+			<%=f.label :validation_error_message,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
+				<%=f.text_field :validation_error_message, :class => "form-control"%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%=f.label :required,:class => "control-label"%>
-			<div class="controls">
+		<div class="form-group">
+			<%=f.label :required,:class => "control-label col-sm-4"%>
+			<div class="col-sm-8">
 				<%=f.check_box :required%>
 			</div>
 		</div>
-		<div class="control-group">
-			<%= link_to_remove_fields "Remove", f %>
+		<div class="form-group">
+			<div class="col-sm-8 col-sm-offset-4"><%= link_to_remove_fields "Remove", f %></div>
+			
 		</div>
 	</fieldset>
