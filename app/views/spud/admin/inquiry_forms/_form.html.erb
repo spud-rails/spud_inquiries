@@ -22,17 +22,29 @@
     		</div>
       </div>
       <div class="form-group">
-	    	<%=f.label :content, :required=>true, :class=>"control-label col-sm-4"%>
-  			<div class="col-sm-8">
-  				<%=f.text_area :content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
-  			</div>
+        <%=f.label :content, :required=>true, :class=>"control-label col-sm-4"%>
+        <div class="col-sm-8">
+          <%=f.text_area :content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
+        </div>
       </div>
       <div class="form-group">
         <%=f.label :thank_you_content,"Thank You Text", :required=>true, :class=>"control-label col-sm-4"%>
         <div class="col-sm-8">
           <%=f.text_area :thank_you_content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
+          <p class="help-block">The above message will be display on the page to the user immediately after submission of inquiry.  </p>
         </div>
       </div>
+
+      <% if Spud::Inquiries.send_receipt %>
+      <div class="form-group">
+        <%=f.label :receipt_content, :class=>"control-label col-sm-4"%>
+        <div class="col-sm-8">
+          <%=f.text_area :receipt_content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
+          <p class="help-block">We will email the above message after submission of inquiry.  Also, please ensure one of the inquiry fields below has the name of 'email'.</p>
+        </div>
+      </div>
+      <% end %>
+
       <div class="form-group">
         <%=f.label :submit_title, "Submit Button Title", :required=>true, :class=>"control-label col-sm-4"%>
         <div class="col-sm-8">
