@@ -61,7 +61,7 @@ class ContactsController < ApplicationController
 				Spud::InquiryMailer.inquiry_notification(@spud_inquiry).deliver
 			end
 
-      if @spud_inquiry.email != 'Unknown Sender' && !@inquiry_form.content.blank?
+      if Spud::Inquiries.send_receipt && @spud_inquiry.email != 'Unknown Sender' && !@inquiry_form.receipt_content.blank?
 			  Spud::InquiryMailer.send_receipt(@spud_inquiry, @inquiry_form).deliver
 		  end
 		else

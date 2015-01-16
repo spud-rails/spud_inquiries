@@ -12,6 +12,6 @@ class Spud::InquiryMailer < ActionMailer::Base
     @inquiry = inquiry
     @form = form
 
-    mail(:from => Spud::Inquiries.from_address, :to => @inquiry.email, :subject => @inquiry.subject.blank? ? "No Subject" : @inquiry.subject)
+    mail(:from => Spud::Inquiries.from_address, :reply_to => Spud::Inquiries.reply_to.blank? ? Spud::Inquiries.from_address : Spud::Inquiries.reply_to, :to => @inquiry.email, :subject => @inquiry.subject.blank? ? "No Subject" : @inquiry.subject)
   end
 end
