@@ -2,53 +2,41 @@
 <fieldset>
   <legend>Form Info</legend>
 
-	  <div class="form-group">
+	  <div class="control-group">
 
-	    	<%=f.label :name, :required=>true, :class=>"control-label col-sm-4"%>
-		<div class="col-sm-8">
-			<%=f.text_field :name, :class => "form-control"%>
+	    	<%=f.label :name, :required=>true, :class=>"control-label"%>
+		<div class="controls">
+			<%=f.text_field :name%>
 		</div>
       </div>
-      <div class="form-group">
-	    	<%=f.label :recipients, :required=>true, :class=>"control-label col-sm-4"%>
-			<div class="col-sm-8">
-				<%=f.text_field :recipients, :class => "form-control"%>
+      <div class="control-group">
+	    	<%=f.label :recipients, :required=>true, :class=>"control-label"%>
+			<div class="controls">
+				<%=f.text_field :recipients%>
 			</div>
       </div>
-      <div class="form-group">
-	    	<%=f.label :subject, :required=>true, :class=>"control-label col-sm-4"%>
-    		<div class="col-sm-8">
-    			<%=f.text_field :subject, :class => "form-control"%>
+      <div class="control-group">
+	    	<%=f.label :subject, :required=>true, :class=>"control-label"%>
+    		<div class="controls">
+    			<%=f.text_field :subject%>
     		</div>
       </div>
-      <div class="form-group">
-        <%=f.label :content, :required=>true, :class=>"control-label col-sm-4"%>
-        <div class="col-sm-8">
-          <%=f.text_area :content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
+      <div class="control-group">
+	    	<%=f.label :content, :required=>true, :class=>"control-label"%>
+  			<div class="controls">
+  				<%=f.text_area :content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
+  			</div>
+      </div>
+      <div class="control-group">
+        <%=f.label :thank_you_content,"Thank You Text", :required=>true, :class=>"control-label"%>
+        <div class="controls">
+          <%=f.text_area :thank_you_content,:cols => 75,:rows => 5,:class => "wysiwym tinymce"%>
         </div>
       </div>
-      <div class="form-group">
-        <%=f.label :thank_you_content,"Thank You Text", :required=>true, :class=>"control-label col-sm-4"%>
-        <div class="col-sm-8">
-          <%=f.text_area :thank_you_content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
-          <p class="help-block">The above message will be display on the page to the user immediately after submission of inquiry.  </p>
-        </div>
-      </div>
-
-      <% if Spud::Inquiries.send_receipt %>
-      <div class="form-group">
-        <%=f.label :receipt_content, :class=>"control-label col-sm-4"%>
-        <div class="col-sm-8">
-          <%=f.text_area :receipt_content,:cols => 75,:rows => 5,:class => "spud-formatted-editor form-control"%>
-          <p class="help-block">We will email the above message after submission of inquiry.  Also, please ensure one of the inquiry fields below has the name of 'email'.</p>
-        </div>
-      </div>
-      <% end %>
-
-      <div class="form-group">
-        <%=f.label :submit_title, "Submit Button Title", :required=>true, :class=>"control-label col-sm-4"%>
-        <div class="col-sm-8">
-          <%=f.text_field :submit_title, :class => "form-control"%>
+      <div class="control-group">
+        <%=f.label :submit_title, "Submit Button Title", :required=>true, :class=>"control-label"%>
+        <div class="controls">
+          <%=f.text_field :submit_title%>
         </div>
       </div>
 
@@ -59,12 +47,6 @@
 	<%=f.fields_for :spud_inquiry_form_fields do |builder|%>
 		<%=render "spud_inquiry_form_field_fields",:f => builder%>
 	<%end%>
-  <div class="form-group">
-    <div class="col-sm-8 col-sm-offset-4">
-      <%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %>
-    </div>  
-  </div>
-  
-	
+	<p><%= link_to_add_fields "Add Field", f, :spud_inquiry_form_fields %></p>
 </fieldset>
 

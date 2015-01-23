@@ -36,7 +36,7 @@ class ContactsController < ApplicationController
 			val = params[:spud_inquiry][field.field_name]
 			if field.required && val.blank?
 				flash[:error] = "Not all required fields were entered"
-				@spud_inquiry.errors.add field.field_name,"is a required field.  "
+				@spud_inquiry.errors.add field.field_name,"is a required field"
 			end
 
 			if field.validation_rule
@@ -60,10 +60,6 @@ class ContactsController < ApplicationController
 			if !@spud_inquiry.recipients.blank?
 				Spud::InquiryMailer.inquiry_notification(@spud_inquiry).deliver
 			end
-
-      if Spud::Inquiries.send_receipt && @spud_inquiry.email != 'Unknown Sender' && !@inquiry_form.receipt_content.blank?
-			  Spud::InquiryMailer.send_receipt(@spud_inquiry, @inquiry_form).deliver
-		  end
 		else
 			flash[:error] = "Whoops! Something went wrong. Please try again!"
 			respond_to do |format|
