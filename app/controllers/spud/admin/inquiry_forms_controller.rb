@@ -54,6 +54,6 @@ private
 	end
 
 	def inquiry_form_params
-		params.require(:spud_inquiry_form).permit(:name,:url_name,:recipients,:content,:subject,{:spud_inquiry_form_fields_attributes => [:id,:name,:options,:default_value,:field_type,:spud_inquiry_form_id,:field_order,:required, :placeholder, :class_name, :validation_rule, :validation_error_message, :_destroy]}, :created_at, :updated_at, :thank_you_content, :submit_title)
+		params.require(:spud_inquiry_form).permit(:name,:url_name,:recipients,:content, :receipt_content, :subject,{:spud_inquiry_form_fields_attributes => [:id,:name,:options,:default_value,:field_type,:spud_inquiry_form_id,:field_order,:required, :placeholder, :class_name, :validation_rule, :validation_error_message, :_destroy]}, :created_at, :updated_at, :thank_you_content, :submit_title)
 	end
 end
